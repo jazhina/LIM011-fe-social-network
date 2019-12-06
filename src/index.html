@@ -15,9 +15,9 @@
   <main>
     <h2>¡Bienvenid@!</h2>
     <form>
-      <input type="text" placeholder="e-mail">
-      <input type="password" placeholder="contraseña">
-      <button type="text">Iniciar sesión</button>
+      <input id="email" type="text" placeholder="e-mail">
+      <input id="key" type="password" placeholder="contraseña">
+      <button id="addUser" onclick="addUser" type="text">Iniciar sesión</button>
       <p>O ingresa con:</p>
       <i class="fab fa-facebook"></i>
       <p>¿No tienes una cuenta?</p>
@@ -26,7 +26,12 @@
       <a href="">Holi</a>
     </form>
   </main>
+  
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
   <script type="module" src="index.js"></script>
+  <script type="module" src="functions.js"></script>
+  <script type="module" src="app.js"></script>
   <script src="https://kit.fontawesome.com/d8766e8b30.js" crossorigin="anonymous"></script>
 </body>
 
