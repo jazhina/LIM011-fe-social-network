@@ -21,6 +21,8 @@ sesion.addEventListener('click', (e) => {
   })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
+        document.getElementById('e-mail').value = '';
+        document.getElementById('password').value = '';
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
