@@ -73,3 +73,107 @@ border: 0;
 .text-link {
     text-decoration: none;
 }
+
+
+.photo {
+    width: 85px;
+    border-radius: 50%;
+    height: 85px;
+}
+
+.hide {
+    display: none;
+}
+
+.menu-movil {
+    width: 41px;
+    height: 41px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-left: 4px;
+    padding-top: 2.5px;
+    box-sizing: border-box;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background: rgb(219, 219, 219);
+    box-shadow: grey 5px 1px 8px;
+    height: 55px;
+}
+
+.logo-movil {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 20px;
+}
+
+.flex {
+    display: flex;
+}
+
+.form {
+    width: 328px;
+    border: 1px solid grey;
+    padding: 20px;
+    border-radius: 3px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.btn-img {
+    width: 42px;
+    height: 37px;
+    border-radius: 50%;
+    margin-right: 13px;
+    margin-top: 5px;
+}
+
+.btn-share {
+    width: 43%;
+    box-sizing: border-box;
+    height: 38px;
+    border-radius: 20px;
+    padding-left: 12px;
+}
+
+.btn-coment {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.coment { 
+    width: 328px;
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.coment p {
+    margin: 0;
+}
+
+.title-note {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+hr {
+    margin-bottom: 20px;
+}

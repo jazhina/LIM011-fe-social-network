@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <header>
+  <!-- <header>
     <figure class="img-header">
       <img src="img/fondo-pet.jpg" alt="fondo de cabecera">
     </figure>
@@ -21,7 +21,8 @@
     <form class="form-loging">
       <input type="email" placeholder="e-mail" id="e-mail">
       <input type="password" placeholder="contraseña" id="password">
-      <button class="btn-init" type="text" id="button">Iniciar sesión</button>
+      <button class="btn-init" type="text" id="button"><a href="#/muro">Iniciar sesión</a></button>
+      <a href="#muro">Entrar</a>
       <p class="text">O bien ingresa con...</p>
       <section class="section-redes">
         <button class="btn-redes" id="btnFace"><i class="fab fa-facebook"></i></button>
@@ -29,7 +30,48 @@
       </section>
       <p class="text">¿No tienes una cuenta? <a class="text-link" href="">Regístrate</a></p>
     </form>
+  </main> -->
+  <header class="header">
+    <menu class="menu-movil"><i class="fas fa-bars fa-2x"></i></menu>
+    <nav class="hide">
+      <li class="text">Mi perfil</li>
+      <li class="text">Salir</li>
+    </nav>
+    <h1 class="logo-movil">PET LOVERS</h1>
+  </header>
+  <main>
+    <section class="flex">
+      <figure>
+        <img class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
+      </figure>
+      <div>
+        <p>Nombre de Mascota</p>
+        <p class="text">Perrito</p>
+      </div>
+    </section>
+    <section>
+      <form class="form">
+        <textarea placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
+        <div class="btn-coment">
+            <button class="btn-img"><i class="far fa-image"></i></button>
+            <button class="btn-share">Compartir</button>
+        </div>
+      </form>
+      <div class="coment">
+        <div class="title-note">
+          <p>Publicado por Jean Cedron - Comunal</p><i class="fas fa-times"></i>
+        </div>
+        <hr>
+        <p>Hola a todos!</p>
+        <hr>
+        <div class="btns-note">
+          <button><i class="far fa-grin-hearts"></i></button>
+          <button><i class="fas fa-share"></i></button>
+        </div>
+      </div>
+    </section>
   </main>
+  <script type="module" src="main.js"></script>
   <script type="module" src="index.js"></script>
   <script src="https://kit.fontawesome.com/d8766e8b30.js" crossorigin="anonymous"></script>
   <!---FIREBASE-->

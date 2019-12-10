@@ -5,9 +5,16 @@ firebase.initializeApp({
     projectId: "pet-lovers-5dca4",
   });
   
-  const db = firebase.firestore();
-  
+//import { example } from './example.js';
+
 const sesion = document.getElementById('button');
+
+const db = firebase.firestore();
+
+sesion.addEventListener('click', (e) => {
+  alert('hi');
+});
+
 sesion.addEventListener('click', (e) => {
     e.preventDefault()
     const correo = document.getElementById('e-mail').value;
@@ -28,10 +35,6 @@ sesion.addEventListener('click', (e) => {
         console.error("Error adding document: ", error);
     });
 });
-
-/*import { example } from './example.js';
-
-example();*/
 
 const btnFace = document.getElementById('btnFace');
 btnFace.addEventListener('click', (e)=> {
