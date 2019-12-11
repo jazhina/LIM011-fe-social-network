@@ -98,6 +98,9 @@ border: 0;
 }
 
 .header-movil {
+    position: fixed;
+    top: 0;
+    width: 100%;
     display: flex;
     align-items: center;
     background: rgb(211, 211, 211);
@@ -238,7 +241,32 @@ hr {
     margin-top: 15px;
 }
 
-#menuOptionsMovil {
-    clip-path: circle(0% at 100% 0);
-    border: 1px solid red;
+/* Animacion de Menu-movil */
+#enlaces {
+    width: 100%;
+    position: fixed;
+    top: 55px;
+    background: #f12711;
+    background: linear-gradient(to right, #f5af19, #f12711);
+    transition: all 1s ease;
+}
+
+#enlaces p {
+    height: 30px;
+    border: 1px solid white;
+    margin: 0;
+    padding: 15px;
+    padding-top: 22px;
+}
+
+.animationTwo {
+    clip-path: circle(141.4% at 0 0);
+}
+
+.animationOne {
+    clip-path: circle(0.0% at 0 0);
+}
+
+#main {
+    margin-top: 55px;
 }
