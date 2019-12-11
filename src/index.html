@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <!-- <header>
+  <header>
     <figure class="img-header">
       <img src="img/fondo-pet.jpg" alt="fondo de cabecera">
     </figure>
@@ -30,30 +30,30 @@
       </section>
       <p class="text">¿No tienes una cuenta? <a class="text-link" href="">Regístrate</a></p>
     </form>
-  </main> -->
-  <header class="header">
-    <menu class="menu-movil"><i class="fas fa-bars fa-2x"></i></menu>
-    <nav class="hide">
+  </main>
+  <!-- <header class="header-movil">
+    <menu class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
+    <nav id="menuOptionsMovil" class="">
       <li class="text">Mi perfil</li>
       <li class="text">Salir</li>
     </nav>
     <h1 class="logo-movil">PET LOVERS</h1>
   </header>
   <main>
-    <section class="flex">
-      <figure>
+    <section class="flex section-info-muro">
+      <figure class="figure-photo">
         <img class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
       </figure>
       <div>
-        <p>Nombre de Mascota</p>
-        <p class="text">Perrito</p>
+        <p class="name-user">Nombre de Mascota</p>
+        <p class="text-grey">-- Perrito --</p>
       </div>
     </section>
     <section>
       <form class="form">
         <textarea placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
         <div class="btn-coment">
-            <button class="btn-img"><i class="far fa-image"></i></button>
+            <button class="btn-img"><i class="far fa-image icons-white"></i></button>
             <button class="btn-share">Compartir</button>
         </div>
       </form>
@@ -61,16 +61,24 @@
         <div class="title-note">
           <p>Publicado por Jean Cedron - Comunal</p><i class="fas fa-times"></i>
         </div>
-        <hr>
-        <p>Hola a todos!</p>
-        <hr>
-        <div class="btns-note">
-          <button><i class="far fa-grin-hearts"></i></button>
-          <button><i class="fas fa-share"></i></button>
+        <p class="text-coment">Hola a todos!</p>
+        <div class="section-btns-note">
+          <button class="btns-note"><i class="far fa-grin-hearts icons-white"></i></button>
+          <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
+        </div>
+      </div>
+      <div class="coment">
+        <div class="title-note">
+          <p>Publicado por Jean Cedron - Comunal</p><i class="fas fa-times"></i>
+        </div>
+        <p class="text-coment">Hola a todos!</p>
+        <div class="section-btns-note">
+          <button class="btns-note"><i class="far fa-grin-hearts icons-white"></i></button>
+          <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
         </div>
       </div>
     </section>
-  </main>
+  </main> -->
   <script type="module" src="main.js"></script>
   <script type="module" src="index.js"></script>
   <script src="https://kit.fontawesome.com/d8766e8b30.js" crossorigin="anonymous"></script>
@@ -78,7 +86,6 @@
   <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
-
 </body>
 
 </html>

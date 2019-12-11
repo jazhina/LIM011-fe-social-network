@@ -88,28 +88,28 @@ border: 0;
 .menu-movil {
     width: 41px;
     height: 41px;
-    border: 2px solid black;
+    border: 1px solid rgb(61, 61, 61);
     border-radius: 5px;
-    padding-left: 4px;
+    padding-left: 5px;
     padding-top: 2.5px;
     box-sizing: border-box;
     margin-left: 15px;
     cursor: pointer;
 }
 
-.header {
+.header-movil {
     display: flex;
     align-items: center;
-    background: rgb(219, 219, 219);
-    box-shadow: grey 5px 1px 8px;
+    background: rgb(211, 211, 211);
+    box-shadow: rgb(143, 143, 143) 5px 1px 8px;
     height: 55px;
 }
 
 .logo-movil {
     font-family: sans-serif;
     font-weight: bold;
-    font-size: 25px;
-    margin-left: 20px;
+    font-size: 20px;
+    margin-left: 20%;
 }
 
 .flex {
@@ -139,6 +139,8 @@ border: 0;
     border-radius: 50%;
     margin-right: 13px;
     margin-top: 5px;
+    background: rgb(65, 65, 65);
+    border: none;
 }
 
 .btn-share {
@@ -162,6 +164,7 @@ border: 0;
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
+    margin-bottom: 17px;
 }
 
 .coment p {
@@ -171,9 +174,71 @@ border: 0;
 .title-note {
     display: flex;
     justify-content: space-between;
-    margin: 15px;
+    background: grey;
+    padding: 15px;
 }
 
 hr {
     margin-bottom: 20px;
+}
+
+.text-coment {
+    text-align: left;
+    font-size: 14px;
+    font-family: monospace;
+    padding: 15px;
+}
+
+.section-btns-note {
+    padding: 15px;
+    background: rgb(221, 220, 220);
+}
+
+.btns-note {
+    width: 42px;
+    height: 37px;
+    border-radius: 50%;
+    margin-right: 13px;
+    margin-top: 5px;
+    background: grey;
+    border: none;
+}
+
+.icons-white {
+    color: white;
+}
+
+.bars {
+    color: rgb(73, 73, 73);
+}
+
+.text-grey {
+    font-size: 12.4px;
+    font-family: sans-serif;
+    color: grey;
+    margin: 0;
+}
+
+.name-user {
+    font-size: 14px;
+    font-family: sans-serif;
+    padding-top: 5px;
+    margin-bottom: 10px;
+}
+
+.section-info-muro {
+    width: 328px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.figure-photo {
+    margin-left: 0;
+    margin-right: 30px;
+    margin-top: 15px;
+}
+
+#menuOptionsMovil {
+    clip-path: circle(0% at 100% 0);
+    border: 1px solid red;
 }
