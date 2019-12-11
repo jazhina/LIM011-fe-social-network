@@ -5,7 +5,7 @@ firebase.initializeApp({
     projectId: "pet-lovers-5dca4",
   });
   
-//import { example } from './example.js';
+// import { muro } from './muro.js';
 
 const sesion = document.getElementById('button');
 

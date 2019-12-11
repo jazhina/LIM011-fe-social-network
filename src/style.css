@@ -270,3 +270,14 @@ hr {
 #main {
     margin-top: 55px;
 }
+
+@media (min-width: 600px) {
+    .header-inicio {
+        width: 50%;
+        height: 50%;
+    }
+
+    body {
+        display: flex;
+    }
+}

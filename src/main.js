@@ -1,6 +1,8 @@
+import { changeView } from './muro.js';
+
 const init = () => {
     window.addEventListener('hashchange', () => {
-        console.log(window.location.hash);
+        changeView(window.location.hash);
     });
 };
 

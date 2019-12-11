@@ -1,4 +1,5 @@
-export const example = () => {
-    // aquí tu código
-    
-}
+const changeView = (route) => {
+    console.log(route);
+};
+
+export {changeView};
