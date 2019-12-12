@@ -6,27 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>PET LOVERS</title>
+
+  <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+
 </head>
 
 <body>
   <header>
-    <h1>PET LOVERS</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="#/"><img src='imagen/logo-pet-lovers.png' alt=""></a>
+        </li>
+      </ul>
+    </nav>
   </header>
-  <main>
-    <h2>¡Bienvenid@!</h2>
-    <form>
-      <input type="text" placeholder="e-mail">
-      <input type="password" placeholder="contraseña">
-      <button type="text">Iniciar sesión</button>
-      <p>O ingresa con:</p>
-      <i class="fab fa-facebook"></i>
-      <p>¿No tienes una cuenta?</p>
-      <a href="">Regístrate</a>
-      <a href="">Cancelar</a>
-    </form>
+  <main id="container">
   </main>
-  <script type="module" src="index.js"></script>
-  <script src="https://kit.fontawesome.com/d8766e8b30.js" crossorigin="anonymous"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+<!-- Conección con el Javascript -->
+  <script type="module" src="main.js"></script>
+
 </body>
 
 </html>
