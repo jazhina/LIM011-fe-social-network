@@ -4,8 +4,6 @@ firebase.initializeApp({
     authDomain: "pet-lovers-5dca4.firebaseapp.com",
     projectId: "pet-lovers-5dca4",
   });
-  
-// import { muro } from './muro.js';
 
 const sesion = document.getElementById('button');
 

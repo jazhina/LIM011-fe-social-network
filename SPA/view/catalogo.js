@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css">
-  <title>PET LOVERS</title>
-</head>
-
-<body>
-  <header class="header-inicio">
-    <figure class="img-header">
-      <img src="../SPA/img/fondo-pet.jpg" alt="fondo de cabecera">
-    </figure>
-  </header>
-  <main>
-    <h1 class="logo">PET LOVERS</h1>
-    <p class="text">¡Bienvenid@ PetLover!</p>
-    <form class="form-loging">
-      <input type="email" placeholder="e-mail" id="e-mail">
-      <input type="password" placeholder="contraseña" id="password">
-      <button class="btn-init" type="text" id="button"><a href="#/muro">Iniciar sesión</a></button>
-      <a href="#muro">Entrar</a>
-      <p class="text">O bien ingresa con...</p>
-      <section class="section-redes">
-        <button class="btn-redes" id="btnFace"><i class="fab fa-facebook"></i></button>
-        <button class="btn-redes" id="btnGoogle"><i class="fab fa-google"></i></button>
-      </section>
-      <p class="text">¿No tienes una cuenta? <a class="text-link" href="">Regístrate</a></p>
-    </form>
-  </main>
-  <!-- <header class="header-movil">
+export default () => {
+    const viewCatalogo = 
+    `<header class="header-movil">
     <menu id="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
     <nav id="enlaces" class="animationOne">
       <p class="text">Mi perfil</p>
@@ -78,13 +47,11 @@
         </div>
       </div>
     </section>
-  </main> -->
-  <script type="module" src="index.js"></script>
-  <script src="https://kit.fontawesome.com/d8766e8b30.js" crossorigin="anonymous"></script>
-  <!---FIREBASE-->
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
-</body>
+  </main>
+  <script type="module" src="animation.js"></script>`
 
-</html>
+  const divElement = document.createElement('div');
+  divElement.innerHTML = viewCatalogo;
+
+  return divElement;
+};
