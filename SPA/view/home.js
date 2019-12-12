@@ -1,3 +1,5 @@
+import { authFace, authGoogle, authEmail } from '../functions/auth-firebase.js'
+
 export default () => {
     const viewHome = 
     `<header class="header-inicio">
@@ -24,6 +26,26 @@ export default () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewHome;
+
+  //funciones
+
+const sesion = divElement.querySelector('#button');
+sesion.addEventListener('click', (e) => {
+  e.preventDefault();
+  authEmail();
+});
+
+const btnFace = divElement.querySelector('#btnFace')
+btnFace.addEventListener('click', (e) => { 
+  e.preventDefault();
+  authFace();
+});
+
+const btnGoogle = divElement.querySelector('#btnGoogle')
+btnGoogle.addEventListener('click', (e) => { 
+  e.preventDefault();
+  authGoogle();
+});
 
   return divElement;
 };

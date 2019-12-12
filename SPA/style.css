@@ -134,6 +134,7 @@ border: 0;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 3px;
+    width: 92%;
 }
 
 .btn-img {
@@ -246,8 +247,8 @@ hr {
     width: 100%;
     position: fixed;
     top: 55px;
-    background: #f12711;
-    background: linear-gradient(to right, #f5af19, #f12711);
+    background: #ffa095;
+    background: linear-gradient(to right, #ffd67e, #ff897c);
     transition: all 1s ease;
 }
 
