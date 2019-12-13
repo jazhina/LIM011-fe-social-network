@@ -9,11 +9,11 @@ export default () => {
   </header>
   <main>
     <h1 class="logo">PET LOVERS</h1>
-    <p class="text">¡Bienvenid@ PetLover!</p>
+    <p id="welcome-text" class="msj text">¡Bienvenid@ PetLover!</p>
     <form class="form-loging">
       <input type="email" placeholder="e-mail" id="e-mail">
       <input type="password" placeholder="contraseña" id="password">
-      <button class="btn-init" type="text" id="button"><a href="#/catalogo">Iniciar sesión</a></button>
+      <button class="btn-init" type="text" id="button"><a id= "changeView" href="">Iniciar sesión</a></button>
       <p class="text">O bien ingresa con...</p>
       <section class="section-redes">
         <button class="btn-redes" id="btnFace"><i class="fab fa-facebook"></i></button>
@@ -32,7 +32,19 @@ export default () => {
 const sesion = divElement.querySelector('#button');
 sesion.addEventListener('click', (e) => {
   e.preventDefault();
-  authEmail();
+  const email = divElement.querySelector('#e-mail').value;
+  const password = divElement.querySelector('#password').value;
+  authEmail(email, password).then(function(docRef) {
+    console.log("Document written with ID: ", docRef.id);
+    document.getElementById('e-mail').value = '';
+    document.getElementById('password').value = '';
+    const url = window.location.href;
+    window.location.href = url + '#/catalogo';
+    console.log(window.location.href);
+})
+.catch(function(error) {
+    console.error("Error adding document: ", error);
+});
 });
 
 const btnFace = divElement.querySelector('#btnFace')
