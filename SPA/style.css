@@ -273,12 +273,28 @@ hr {
 }
 
 @media (min-width: 600px) {
-    .header-inicio {
-        width: 50%;
-        height: 50%;
-    }
-
-    body {
+    body div {
         display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
     }
+main {
+    width: 50%;
+    margin-top: 6%;
+}
+.header-inicio {
+    width: 50%;
+    height: 100%;
+    margin-top: 8%;
+}
+#welcome-text.msj::after {
+    font-weight: negrita;
+    content: " Una red social donde tu mascota es la estrella ;) ";
+    display: block;
+    margin-top: 10px;
+}
+.logo {
+    font-size: 40px;
+}
 }

@@ -1,25 +1,33 @@
-export const authEmail = () => {
-    console.log('funciona email :) !');
-    const db = firebase.firestore();
-    const correo = document.getElementById('e-mail').value;
-    const contraseña = document.getElementById('password').value;
-    console.log(correo);
-    console.log(contraseña);
-
-  db.collection("users").add({
-    e_mail : correo,
-    password: contraseña,
-  })
-    .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-        document.getElementById('e-mail').value = '';
-        document.getElementById('password').value = '';
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
+//Crear usuario con email y password
+export const firebaseSignIn = (email, password) => {
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage);
+    // ...
+  });
 };
 
+//Loguearse con email y password
+export const firebaseLogIn = (email, password) => {
+  firebase.auth().signInWithEmailAndPassword(email, password);
+};
+
+//Logueo de prueba con email y password --> se almacena en el database
+export const authEmail = (email, password) => {
+    console.log('funciona email :) !');
+    const db = firebase.firestore();
+    console.log(email);
+    console.log(password);
+
+  return db.collection("users").add({
+    e_mail : email,
+    password: password,
+  })
+};
+
+//Auth con Facebook
 export const authFace = () => {
     console.log('funciona Facebook :) !');
     var provider = new firebase.auth.FacebookAuthProvider();
@@ -45,6 +53,7 @@ export const authFace = () => {
     });
 };
 
+//Auth con Google
 export const authGoogle = () => {
     console.log('funciona google :) !');
     var provider = new firebase.auth.GoogleAuthProvider();
