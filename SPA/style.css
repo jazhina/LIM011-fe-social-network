@@ -14,7 +14,7 @@ border: 0;
     height: 100%;
 }
 
-.logo {
+.logo-home {
     text-align: center;
     font-family: sans-serif;
     font-weight: bold;
@@ -242,6 +242,10 @@ hr {
     margin-top: 15px;
 }
 
+.section-destok {
+    display: none;
+}
+
 /* Animacion de Menu-movil */
 #enlaces {
     width: 100%;
@@ -272,29 +276,109 @@ hr {
     margin-top: 55px;
 }
 
+#main-muro {
+    margin-top: 55px;
+}
+
 @media (min-width: 600px) {
-    body div {
+    /* View-home */
+
+    #container .div-home {
         display: flex;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
+        margin-top: 7%;
     }
-main {
-    width: 50%;
-    margin-top: 6%;
-}
-.header-inicio {
-    width: 50%;
-    height: 100%;
-    margin-top: 8%;
-}
-#welcome-text.msj::after {
-    font-weight: negrita;
-    content: " Una red social donde tu mascota es la estrella ;) ";
-    display: block;
-    margin-top: 10px;
-}
-.logo {
-    font-size: 40px;
-}
+    .main-home {
+        width: 50%;
+    }
+    .header-inicio {
+        width: 50%;
+        height: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-top: 1%;
+    }
+    #welcome-text.msj::after {
+        font-weight: negrita;
+        content: " Una red social donde tu mascota es la estrella ;) ";
+        display: block;
+        margin-top: 10px;
+    }
+    .logo-home {
+        font-size: 40px;
+        text-align: center;
+    }
+    #password, #e-mail {
+        width: 50%;
+    }
+    .btn-init {
+        width: 26%;
+    }
+
+    /* View-muro */
+
+    #main-muro {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .section-publics-muro {
+        width: 50%;
+        margin-top: 2%;
+    }
+    .section-info-muro {
+        width: 50%;
+    }
+    .form, .coment {
+        margin-left: 3%;
+        width: 65%;
+    }
+
+    .section-info-muro {
+        display: none;
+    }
+    .section-destok {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 50%;
+        margin-top: 2%;
+    }
+    .div-info-muro {
+        display: flex;
+        width: 65%;
+        justify-content: flex-start;
+        border: 1px solid grey;
+    }
+    .photo-info-muro {
+        width: 100%;
+        height:150px;
+    }
+    .fig-portada {
+        margin: 0;
+        width: 65%;
+        height: 150px;
+        border: 1px solid grey;
+    }
+    .figure-photo {
+        margin-left: 10px;
+    }
+    .logo-destok {
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .header-movil {
+        display: none;
+    }
+    .list-menu-destok {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background: rgb(211, 211, 211);
+        box-shadow: rgb(143, 143, 143) 5px 1px 8px;
+        height: 55px;
+    }
 }
