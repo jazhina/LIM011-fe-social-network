@@ -7,8 +7,8 @@ export default () => {
       <img src="img/fondo-pet.jpg" alt="fondo de cabecera">
     </figure>
   </header>
-  <main>
-    <h1 class="logo">PET LOVERS</h1>
+  <main class="main-home">
+    <h1 class="logo-home">PET LOVERS</h1>
     <p id="welcome-text" class="msj text">¡Bienvenid@ PetLover!</p>
     <form class="form-loging">
       <input type="email" placeholder="e-mail" id="e-mail">
@@ -25,6 +25,7 @@ export default () => {
   <script  type="module"src="firebase.js"></script>`;
 
   const divElement = document.createElement('div');
+  divElement.classList.add('div-home');
   divElement.innerHTML = viewHome;
 
   // funciones
