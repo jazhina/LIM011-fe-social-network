@@ -246,6 +246,10 @@ hr {
     display: none;
 }
 
+.list-menu-destok {
+    display: none;
+}
+
 /* Animacion de Menu-movil */
 #enlaces {
     width: 100%;

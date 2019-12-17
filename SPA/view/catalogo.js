@@ -8,7 +8,7 @@ export default () => {
       <p class="text">Mi perfil</p>
       <p class="text">Salir</p>
     </nav>
-    <h1 class="logo-destok">PET LOVERS</h1>
+    <h1 class="logo-movil">PET LOVERS</h1>
   </header>
   <div class="list-menu-destok">
   <menu id="menu-movil-destok">Nombre de Mascota <i id="icon-down" class="fas fa-caret-down"></i></menu>
