@@ -10,7 +10,16 @@ export default () => {
     </nav>
     <h1 class="logo-movil">PET LOVERS</h1>
   </header>
-  <main id="main">
+  <div class="list-menu-destok">
+  <menu id="menu-movil-destok">Nombre de Mascota <i id="icon-down" class="fas fa-caret-down"></i></menu>
+  <nav id="enlaces-destok" class="animationOne">
+    <p class="text">Mi perfil</p>
+    <p class="text">Salir</p>
+  </nav>
+  <h1 class="logo-destok">PET LOVERS</h1>
+  <menu id="out-menu-destok">Cerrar sesión <i class="fas fa-sign-out-alt"></i></menu>
+  </div>
+  <main id="main-muro">
     <section class="flex section-info-muro">
       <figure class="figure-photo">
         <img class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
@@ -20,7 +29,21 @@ export default () => {
         <p class="text-grey">-- Perrito --</p>
       </div>
     </section>
-    <section>
+    <section class="section-destok">
+      <figure class="fig-portada">
+        <img class="photo-info-muro" src="img/portada.jpg" alt="foto de portada">
+      </figure>
+      <div class="div-info-muro">
+      <figure class="figure-photo">
+        <img class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
+      </figure>
+      <div>
+        <p class="name-user">Nombre de Mascota</p>
+        <p class="text-grey">-- Perrito --</p>
+      </div>
+      </div>
+    </section>
+    <section class="section-publics-muro">
       <form class="form">
         <textarea placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
         <div class="btn-coment">
@@ -56,8 +79,11 @@ export default () => {
   divElement.innerHTML = viewCatalogo;
 
   //Funciones
-  const logo = divElement.querySelector('#menu-movil');
-  logo.addEventListener('click', menuAnimation);
+  const menuMovil = divElement.querySelector('#menu-movil');
+  menuMovil.addEventListener('click', menuAnimation);
+  const menuDestok = divElement.querySelector('#icon-down');
+  menuDestok.addEventListener('click', menuAnimation);
+
 
   return divElement;
 };
