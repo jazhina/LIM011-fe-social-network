@@ -381,4 +381,30 @@ hr {
         box-shadow: rgb(143, 143, 143) 5px 1px 8px;
         height: 55px;
     }
+    #out-menu-destok {
+        padding-right: 40px;
+    }
+    #icon-down {
+        display: inline-block;
+        border: 1px solid grey;
+        width: 20px;
+        height: 20px;
+        margin-left: 5px;
+    }
+    #enlaces-destok {
+        width: 100%;
+        position: fixed;
+        top: 55px;
+        background: #ffa095;
+        background: linear-gradient(to right, #ffd67e, #ff897c);
+        transition: all 1s ease;
+    }
+    
+    #enlaces-destok p {
+        height: 30px;
+        border: 1px solid white;
+        margin: 0;
+        padding: 15px;
+        padding-top: 22px;
+    }
 }
