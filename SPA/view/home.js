@@ -29,13 +29,13 @@ export default () => {
   divElement.innerHTML = viewHome;
 
   //funciones
-
+const db = firebase.firestore();
 const sesion = divElement.querySelector('#button');
 sesion.addEventListener('click', (e) => {
   e.preventDefault();
   const email = divElement.querySelector('#e-mail').value;
   const password = divElement.querySelector('#password').value;
-  authEmail(email, password).then(function(docRef) {
+  authEmail(email, password, db).then(function(docRef) {
     console.log("Document written with ID: ", docRef.id);
     document.getElementById('e-mail').value = '';
     document.getElementById('password').value = '';
@@ -51,7 +51,12 @@ sesion.addEventListener('click', (e) => {
 const btnFace = divElement.querySelector('#btnFace')
 btnFace.addEventListener('click', (e) => { 
   e.preventDefault();
-  authFace();
+  authFace().then((result)=> {
+    db.collection("users").add({
+      e_mail : 'lalalallalalala',
+      password: 'wiiiiiiiiii',
+    })
+  });
 });
 
 const btnGoogle = divElement.querySelector('#btnGoogle')

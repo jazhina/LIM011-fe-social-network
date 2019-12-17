@@ -1,3 +1,22 @@
+import { changeView } from '../view-controler/index.js'
+
+export const initFire = () => {
+  let conected = false;
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log(user);
+      const userName = user.displayName;
+      const photo = user.photoURL;
+      conected = true;
+      console.log(userName, photo);
+      changeView('#catalogo');
+    } else {
+      console.log('No user is signed in');
+    }
+  });
+  return conected;
+};
+
 //Crear usuario con email y password
 export const firebaseSignIn = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
@@ -15,9 +34,8 @@ export const firebaseLogIn = (email, password) => {
 };
 
 //Logueo de prueba con email y password --> se almacena en el database
-export const authEmail = (email, password) => {
+export const authEmail = (email, password, db) => {
     console.log('funciona email :) !');
-    const db = firebase.firestore();
     console.log(email);
     console.log(password);
 
@@ -31,26 +49,7 @@ export const authEmail = (email, password) => {
 export const authFace = () => {
     console.log('funciona Facebook :) !');
     var provider = new firebase.auth.FacebookAuthProvider();
-    provider.addScope('user_birthday');
-    firebase.auth().signInWithRedirect(provider);
-    firebase.auth().getRedirectResult().then(function(result) {
-      if (result.credential) {
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        var token = result.credential.accessToken;
-        // ...
-      }
-      // The signed-in user info.
-      var user = result.user;
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
+    return firebase.auth().signInWithRedirect(provider);
 };
 
 //Auth con Google
