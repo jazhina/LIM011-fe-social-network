@@ -9,4 +9,3 @@ export const menuAnimation = () => {
     menu.classList.add('animationOne');
   }
 };
-
