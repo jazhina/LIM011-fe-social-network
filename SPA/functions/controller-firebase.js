@@ -1,4 +1,5 @@
- import { authFace, authGoogle } from './auth-firebase.js'
+ import { authFace, authGoogle, outUser } from './auth-firebase.js'
+import { changeView } from '../view-controler/index.js';
 
  export const promAuthFace = () => {
      authFace().then((result)=>{
@@ -37,3 +38,11 @@
     }
     return infoUserActual;
  };
+
+export const promOutUser = () => {
+  outUser().then(function() {
+    console.log('Sign-out successful');
+  }).catch(function(error) {
+    console.log('An error happened');
+  });
+}

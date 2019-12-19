@@ -7,6 +7,7 @@ export const initFire = () => {
       changeView('#catalogo');
     } else {
       console.log('No user is signed in');
+      changeView('');
     }
   });
 };
@@ -39,4 +40,8 @@ export const authGoogle = () => {
   console.log('funciona google :) !');
   var provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider);
+};
+
+export const outUser = () => {
+  return firebase.auth().signOut();
 };
