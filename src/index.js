@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-=======
-// INICIAR CLOUD FIRESTORE
-firebase.initializeApp({
-    apiKey: "AIzaSyDKaqE2NpTEwcOS0rWDwUuVCJ94fcApoiQ",
-    authDomain: "pet-lovers-5dca4.firebaseapp.com",
-    projectId: "pet-lovers-5dca4",
-  });
-
-const sesion = document.getElementById('button');
-
-const db = firebase.firestore();
-
-sesion.addEventListener('click', (e) => {
-    e.preventDefault()
-    const correo = document.getElementById('e-mail').value;
-    const contraseña = document.getElementById('password').value;
-    console.log(correo);
-    console.log(contraseña);
->>>>>>> 12c9ad7b5fd928932726b2cc6e97fbefa368d3aa
-
 const btnSignIn = document.getElementById('btnSignIn');
 btnSignIn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -94,7 +73,6 @@ btnFace.addEventListener('click', (e)=> {
   });
 });
 
-<<<<<<< HEAD
 
 // Iniciar sesión
 const btnLogIn = document.getElementById('btnLogIn');
@@ -117,31 +95,3 @@ btnLogIn.addEventListener('click', (e) => {
     // ...
   });
 });
-=======
-const btnGoogle = document.getElementById('btnGoogle');
-btnGoogle.addEventListener('click', (e)=> {
-  e.preventDefault()
-  var provider = new firebase.auth.GoogleAuthProvider();
-provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-firebase.auth().signInWithRedirect(provider);
-firebase.auth().getRedirectResult().then(function(result) {
-  if (result.credential) {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = result.credential.accessToken;
-    // ...
-  }
-  // The signed-in user info.
-  var user = result.user;
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
-});
-
->>>>>>> 12c9ad7b5fd928932726b2cc6e97fbefa368d3aa

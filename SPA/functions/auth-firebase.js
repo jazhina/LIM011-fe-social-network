@@ -14,18 +14,18 @@ export const firebaseLogIn = (email, password) => {
   firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
-// // Logueo de prueba con email y password --> se almacena en el database
-// export const authEmail = (email, password) => {
-//   console.log('funciona email :) !');
-//   const db = firebase.firestore();
-//   console.log(email);
-//   console.log(password);
+// Logueo de prueba con email y password --> se almacena en el database
+export const authEmail = (email, password) => {
+  console.log('funciona email :) !');
+  const db = firebase.firestore();
+  console.log(email);
+  console.log(password);
 
-//   return db.collection('users').add({
-//     email: email,
-//     password: password,
-//   })
-// };
+  return db.collection('users').add({
+    email: email,
+    password: password,
+  });
+};
 
 // Auth con Facebook
 export const authFace = () => {
