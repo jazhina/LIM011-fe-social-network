@@ -14,4 +14,3 @@ export const menuAnimation = () => {
     menuDestok.classList.add('animationOne');
   }
 };
-

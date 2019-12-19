@@ -1,4 +1,4 @@
-import { changeView } from './view-controler/index.js';
+import { changeView } from './router.js';
 
 const init = () => {
   // Initialize Firebase
