@@ -1,7 +1,9 @@
-import { authFace, authGoogle, authEmail } from '../functions/auth-firebase.js';
+import { authFace, authGoogle, authEmail } from '../functions/auth-firebase.js'
+// import { promAuthFace } from '../functions/controller-firebase'
 
 export default () => {
-  const viewHome = `<header class="header-inicio">
+  const viewHome =
+    `<header class="header-inicio">
     <figure class="img-header">
       <img src="img/fondo-pet.jpg" alt="fondo de cabecera">
     </figure>
@@ -27,37 +29,45 @@ export default () => {
   divElement.classList.add('div-home');
   divElement.innerHTML = viewHome;
 
-  // funciones
-
+  //funciones
+  const db = firebase.firestore();
   const sesion = divElement.querySelector('#button');
   sesion.addEventListener('click', (e) => {
     e.preventDefault();
     const email = divElement.querySelector('#e-mail').value;
     const password = divElement.querySelector('#password').value;
-    authEmail(email, password).then(function(docRef) {
-    console.log("Document written with ID: ", docRef.id);
-    document.getElementById('e-mail').value = '';
-    document.getElementById('password').value = '';
-    const url = window.location.href;
-    window.location.href = url + '#/catalogo';
-    console.log(window.location.href);
-})
-.catch(function(error) {
-    console.error("Error adding document: ", error);
-});
-});
+    authEmail(email, password, db).then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      document.getElementById('e-mail').value = '';
+      document.getElementById('password').value = '';
+      const url = window.location.href;
+      window.location.href = url + '#/catalogo';
+      console.log(window.location.href);
+    })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+  });
 
-const btnFace = divElement.querySelector('#btnFace')
-btnFace.addEventListener('click', (e) => { 
-  e.preventDefault();
-  authFace();
-});
+  const btnFace = divElement.querySelector('#btnFace')
+  btnFace.addEventListener('click', (e) => {
+    e.preventDefault();
+    authFace().then((result) => {
+      console.log(result.user.displayName);
+      db.collection("infoUserfacebook").add({
+        email: result.user.email,
+        name: result.user.displayName,
+        photo: result.user.photoURL
+      })
+    });
+    // promAuthFace();
+  });
 
-const btnGoogle = divElement.querySelector('#btnGoogle')
-btnGoogle.addEventListener('click', (e) => { 
-  e.preventDefault();
-  authGoogle();
-});
+  const btnGoogle = divElement.querySelector('#btnGoogle')
+  btnGoogle.addEventListener('click', (e) => {
+    e.preventDefault();
+    authGoogle();
+  });
 
   return divElement;
 };
