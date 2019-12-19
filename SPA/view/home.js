@@ -1,5 +1,5 @@
-import { authFace, authGoogle, authEmail } from '../functions/auth-firebase.js'
-// import { promAuthFace } from '../functions/controller-firebase'
+import { authEmail } from '../functions/auth-firebase.js'
+import { promAuthFace, promAuthGoogle } from '../functions/controller-firebase.js'
 
 export default () => {
   const viewHome =
@@ -29,8 +29,7 @@ export default () => {
   divElement.classList.add('div-home');
   divElement.innerHTML = viewHome;
 
-  //funciones
-  const db = firebase.firestore();
+  //funciones de autentificación
   const sesion = divElement.querySelector('#button');
   sesion.addEventListener('click', (e) => {
     e.preventDefault();
@@ -52,21 +51,13 @@ export default () => {
   const btnFace = divElement.querySelector('#btnFace')
   btnFace.addEventListener('click', (e) => {
     e.preventDefault();
-    authFace().then((result) => {
-      console.log(result.user.displayName);
-      db.collection("infoUserfacebook").add({
-        email: result.user.email,
-        name: result.user.displayName,
-        photo: result.user.photoURL
-      })
-    });
-    // promAuthFace();
+    promAuthFace();
   });
 
   const btnGoogle = divElement.querySelector('#btnGoogle')
   btnGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    authGoogle();
+    promAuthGoogle();
   });
 
   return divElement;
