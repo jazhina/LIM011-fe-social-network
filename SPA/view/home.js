@@ -1,4 +1,5 @@
 import { authFace, authGoogle, authEmail } from '../functions/auth-firebase.js'
+import { promAuthFace } from '../functions/controller-firebase'
 
 export default () => {
     const viewHome = 
@@ -51,12 +52,7 @@ sesion.addEventListener('click', (e) => {
 const btnFace = divElement.querySelector('#btnFace')
 btnFace.addEventListener('click', (e) => { 
   e.preventDefault();
-  authFace().then((result)=> {
-    db.collection("users").add({
-      e_mail : 'lalalallalalala',
-      password: 'wiiiiiiiiii',
-    })
-  });
+  promAuthFace();
 });
 
 const btnGoogle = divElement.querySelector('#btnGoogle')

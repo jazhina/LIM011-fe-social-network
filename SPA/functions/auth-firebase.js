@@ -1,20 +1,14 @@
 import { changeView } from '../view-controler/index.js'
 
 export const initFire = () => {
-  let conected = false;
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log(user);
-      const userName = user.displayName;
-      const photo = user.photoURL;
-      conected = true;
-      console.log(userName, photo);
       changeView('#catalogo');
     } else {
       console.log('No user is signed in');
     }
   });
-  return conected;
 };
 
 //Crear usuario con email y password
@@ -49,7 +43,7 @@ export const authEmail = (email, password, db) => {
 export const authFace = () => {
     console.log('funciona Facebook :) !');
     var provider = new firebase.auth.FacebookAuthProvider();
-    return firebase.auth().signInWithRedirect(provider);
+    return firebase.auth().signInWithPopup(provider);
 };
 
 //Auth con Google
