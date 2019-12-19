@@ -1,4 +1,5 @@
 import { menuAnimation } from '../functions/animation.js';
+import { userActual } from '../functions/controller-firebase.js'
 
 export default () => {
   const db = firebase.firestore();
@@ -12,7 +13,7 @@ export default () => {
     <h1 class="logo-movil">PET LOVERS</h1>
   </header>
   <div class="list-menu-destok">
-  <menu id="menu-movil-destok">Nombre de Mascota <i id="icon-down" class="fas fa-caret-down"></i></menu>
+  <menu id="menu-movil-destok"><span id="nameUserHeader">Nombre de Mascota</span><i id="icon-down" class="fas fa-caret-down"></i></menu>
   <nav id="enlaces-destok" class="animationOne">
     <p class="text">Mi perfil</p>
     <p class="text">Salir</p>
@@ -23,10 +24,10 @@ export default () => {
   <main id="main-muro">
     <section class="flex section-info-muro">
       <figure class="figure-photo">
-        <img class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
+        <img id="photoProfile" class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
       </figure>
       <div>
-        <p class="name-user">Nombre de Mascota</p>
+        <p id="nameUser" class="name-user">Nombre de Mascota</p>
         <p class="text-grey">-- Perrito --</p>
       </div>
     </section>
@@ -36,10 +37,10 @@ export default () => {
       </figure>
       <div class="div-info-muro">
       <figure class="figure-photo">
-        <img class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
+        <img id="photoProfileDestok" class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
       </figure>
       <div>
-        <p class="name-user">Nombre de Mascota</p>
+        <p id="nameUserDestok" class="name-user">Nombre de Mascota</p>
         <p class="text-grey">-- Perrito --</p>
       </div>
       </div>
@@ -130,6 +131,18 @@ db.collection("users").onSnapshot((querySnapshot) => {
   const menuDestok = divElement.querySelector('#icon-down');
   menuDestok.addEventListener('click', menuAnimation);
 
+ //asignancion datos básicos a perfil
+ const photoProfile = divElement.querySelector('#photoProfile');
+ const nameUser = divElement.querySelector('#nameUser');
+ const photoProfileDestok = divElement.querySelector('#photoProfileDestok');
+ const nameUserDestok = divElement.querySelector('#nameUserDestok');
+ const nameUserHeader = divElement.querySelector('#nameUserHeader');
+
+ photoProfile.src = userActual().photoUrl;
+ nameUser.innerHTML = userActual().name;
+ photoProfileDestok.src = userActual().photoUrl;
+ nameUserDestok.innerHTML = userActual().name;
+ nameUserHeader.innerHTML = userActual().name;
 
   return divElement;
 };
