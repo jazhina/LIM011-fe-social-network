@@ -1,4 +1,3 @@
-import { authEmail } from '../functions/auth-firebase.js'
 import { promAuthFace, promAuthGoogle } from '../functions/controller-firebase.js'
 
 export default () => {
@@ -30,24 +29,6 @@ export default () => {
   divElement.innerHTML = viewHome;
 
   //funciones de autentificación
-  const sesion = divElement.querySelector('#button');
-  sesion.addEventListener('click', (e) => {
-    e.preventDefault();
-    const email = divElement.querySelector('#e-mail').value;
-    const password = divElement.querySelector('#password').value;
-    authEmail(email, password, db).then(function (docRef) {
-      console.log("Document written with ID: ", docRef.id);
-      document.getElementById('e-mail').value = '';
-      document.getElementById('password').value = '';
-      const url = window.location.href;
-      window.location.href = url + '#/catalogo';
-      console.log(window.location.href);
-    })
-      .catch(function (error) {
-        console.error("Error adding document: ", error);
-      });
-  });
-
   const btnFace = divElement.querySelector('#btnFace')
   btnFace.addEventListener('click', (e) => {
     e.preventDefault();
