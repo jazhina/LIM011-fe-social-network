@@ -7,84 +7,31 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css">
   <title>PET LOVERS</title>
+
+  <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+
 </head>
 
 <body>
-  <header class="header-inicio">
-    <figure class="img-header">
-      <img src="../SPA/img/fondo-pet.jpg" alt="fondo de cabecera">
-    </figure>
-  </header>
-  <main>
-    <h1 class="logo">PET LOVERS</h1>
-    <p class="text">¡Bienvenid@ PetLover!</p>
-    <form class="form-loging">
-      <input type="email" placeholder="e-mail" id="e-mail">
-      <input type="password" placeholder="contraseña" id="password">
-      <button class="btn-init" type="text" id="button"><a href="#/muro">Iniciar sesión</a></button>
-      <a href="#muro">Entrar</a>
-      <p class="text">O bien ingresa con...</p>
-      <section class="section-redes">
-        <button class="btn-redes" id="btnFace"><i class="fab fa-facebook"></i></button>
-        <button class="btn-redes" id="btnGoogle"><i class="fab fa-google"></i></button>
-      </section>
-      <p class="text">¿No tienes una cuenta? <a class="text-link" href="">Regístrate</a></p>
-    </form>
-  </main>
-  <!-- <header class="header-movil">
-    <menu id="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
-    <nav id="enlaces" class="animationOne">
-      <p class="text">Mi perfil</p>
-      <p class="text">Salir</p>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="#/"><img src='imagen/logo-pet-lovers.png' alt=""></a>
+        </li>
+      </ul>
     </nav>
-    <h1 class="logo-movil">PET LOVERS</h1>
   </header>
-  <main id="main">
-    <section class="flex section-info-muro">
-      <figure class="figure-photo">
-        <img class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
-      </figure>
-      <div>
-        <p class="name-user">Nombre de Mascota</p>
-        <p class="text-grey">-- Perrito --</p>
-      </div>
-    </section>
-    <section>
-      <form class="form">
-        <textarea placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
-        <div class="btn-coment">
-            <button class="btn-img"><i class="far fa-image icons-white"></i></button>
-            <button class="btn-share">Compartir</button>
-        </div>
-      </form>
-      <div class="coment">
-        <div class="title-note">
-          <p>Publicado por Jean Cedron - Comunal</p><i class="fas fa-times"></i>
-        </div>
-        <p class="text-coment">Hola a todos!</p>
-        <div class="section-btns-note">
-          <button class="btns-note"><i class="far fa-grin-hearts icons-white"></i></button>
-          <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
-        </div>
-      </div>
-      <div class="coment">
-        <div class="title-note">
-          <p>Publicado por Jean Cedron - Comunal</p><i class="fas fa-times"></i>
-        </div>
-        <p class="text-coment">Hola a todos!</p>
-        <div class="section-btns-note">
-          <button class="btns-note"><i class="far fa-grin-hearts icons-white"></i></button>
-          <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
-        </div>
-      </div>
-    </section>
-  </main> -->
-  <script type="module" src="index.js"></script>
-  <script src="https://kit.fontawesome.com/d8766e8b30.js" crossorigin="anonymous"></script>
-  <!---FIREBASE-->
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+  <main id="container">
+  </main>
+  
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+<!-- Conección con el Javascript -->
+  <script type="module" src="main.js"></script>
+
 </body>
 
 </html>

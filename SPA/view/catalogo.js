@@ -1,8 +1,8 @@
-import { menuAnimation } from '../functions/animation.js'
+import { menuAnimation } from '../functions/animation.js';
 
 export default () => {
-    const viewCatalogo = 
-    `<header class="header-movil">
+  const viewCatalogo = `
+    <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
     <nav id="enlaces" class="animationOne">
       <p class="text">Mi perfil</p>
@@ -73,12 +73,13 @@ export default () => {
       </div>
     </section>
   </main>
-  <script type="module" src="animation.js"></script>`
+  <script type="module" src="animation.js"></script>
+  `;
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
 
-  //Funciones
+  // Funciones
   const menuMovil = divElement.querySelector('#menu-movil');
   menuMovil.addEventListener('click', menuAnimation);
   const menuDestok = divElement.querySelector('#icon-down');

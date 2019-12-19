@@ -20,10 +20,10 @@ export default () => {
         <button class="btn-redes" id="btnFace"><i class="fab fa-facebook"></i></button>
         <button class="btn-redes" id="btnGoogle"><i class="fab fa-google"></i></button>
       </section>
-      <p class="text">¿No tienes una cuenta? <a class="text-link" href="">Regístrate</a></p>
+      <p class="text">¿No tienes una cuenta? <a class="text-link" href="#/Registro">Regístrate</a></p>
     </form>
   </main>
-  <script  type="module"src="firebase.js"></script>`
+  <script  type="module"src="firebase.js"></script>`;
 
   const divElement = document.createElement('div');
   divElement.classList.add('div-home');
