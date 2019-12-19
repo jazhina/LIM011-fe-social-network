@@ -1,5 +1,5 @@
 import { menuAnimation } from '../functions/animation.js';
-import { userActual } from '../functions/controller-firebase.js'
+import { userActual, promOutUser } from '../functions/controller-firebase.js'
 
 export default () => {
   const db = firebase.firestore();
@@ -130,6 +130,14 @@ db.collection("users").onSnapshot((querySnapshot) => {
   menuMovil.addEventListener('click', menuAnimation);
   const menuDestok = divElement.querySelector('#icon-down');
   menuDestok.addEventListener('click', menuAnimation);
+
+  //logOut
+
+  const outSesion = divElement.querySelector('#out-menu-destok');
+  outSesion.addEventListener('click', (e)=> {
+    e.preventDefault();
+    promOutUser();
+  });
 
  //asignancion datos básicos a perfil
  const photoProfile = divElement.querySelector('#photoProfile');
