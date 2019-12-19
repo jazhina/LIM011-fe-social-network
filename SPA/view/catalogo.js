@@ -100,6 +100,9 @@ const comentarios = divElement.querySelector('#comentarios');
         comentarios.innerHTML += `
           <div class = "comment">
             <div class="title-note">
+            <figure class="figure-photo">
+            <img id="photoComment" class="photo"  alt="foto de perfil">
+            </figure>
             <p>Publicado por Jean Cedron - Comunal</p><i class="fas fa-times"></i>
             </div>
               <p class="text-coment">${doc.data().contenido}</p>
