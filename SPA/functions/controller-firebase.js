@@ -1,7 +1,7 @@
  import { authFace, authGoogle, outUser } from './auth-firebase.js';
 
  export const promAuthFace = () => {
-     authFace().then((result)=>{
+     return authFace().then((result)=>{
          console.log(result.user.displayName);
          return firebase.firestore().collection("users").add({
            email : result.user.email,
@@ -12,7 +12,7 @@
  };
        
  export const promAuthGoogle = () => {
-     authGoogle().then((result)=>{
+    return authGoogle().then((result)=>{
          console.log(result.user.displayName);
          return firebase.firestore().collection("users").add({
             email : result.user.email,
