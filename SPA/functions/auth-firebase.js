@@ -1,18 +1,19 @@
-import { changeView } from '../view-controler/index.js'
+/* eslint-disable import/no-cycle */
+import { changeView } from '../view-controler/index.js';
 
 export const initFire = () => {
-  firebase.auth().onAuthStateChanged( (user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log(user);
+      console.log('conectado');
       changeView('#catalogo');
     } else {
-      console.log('No user is signed in');
+      console.log('El usuario NO stá conectado');
       changeView('');
     }
   });
 };
 
-//Crear usuario con email y password
+// Crear usuario con email y password
 export const firebaseSignIn = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
     // Handle Errors here.
@@ -30,18 +31,14 @@ export const firebaseLogIn = (email, password) => {
 
 // Auth con Facebook
 export const authFace = () => {
-    console.log('funciona Facebook :) !');
-    var provider = new firebase.auth.FacebookAuthProvider();
-    return firebase.auth().signInWithPopup(provider);
-};
-
-//Auth con Google
-export const authGoogle = () => {
-  console.log('funciona google :) !');
-  var provider = new firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };
 
-export const outUser = () => {
-  return firebase.auth().signOut();
+// Auth con Google
+export const authGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
 };
+
+export const outUser = () => firebase.auth().signOut();
