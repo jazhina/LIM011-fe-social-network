@@ -63,7 +63,7 @@ export default () => {
           <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
         </div>
       </div>
-      <div id="comentarios" class = "coment">
+      <div id="comentarios">
       </div>
     </section>
     <div id="perfil">
@@ -99,7 +99,7 @@ const comentarios = divElement.querySelector('#comentarios');
    querySnapshot.forEach((doc) => {
         console.log(`${doc.id} => ${doc.data().contenido}`);
         comentarios.innerHTML += `
-          <div class = "comment">
+          <div class = "coment">
             <div class="title-note">
             <figure class="figure-photo">
             <img id="photoComment" class="photo">

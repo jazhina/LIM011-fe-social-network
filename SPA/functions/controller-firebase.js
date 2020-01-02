@@ -1,5 +1,4 @@
- import { authFace, authGoogle, outUser } from './auth-firebase.js'
-import { changeView } from '../view-controler/index.js';
+ import { authFace, authGoogle, outUser } from './auth-firebase.js';
 
  export const promAuthFace = () => {
      authFace().then((result)=>{
