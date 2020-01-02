@@ -40,6 +40,5 @@ export default () => {
     e.preventDefault();
     promAuthGoogle();
   });
-
   return divElement;
 };

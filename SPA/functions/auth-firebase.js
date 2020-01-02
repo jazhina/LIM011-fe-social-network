@@ -42,6 +42,7 @@ export const authGoogle = () => {
   return firebase.auth().signInWithPopup(provider);
 };
 
+// Desloguear cerrar sesion 
 export const outUser = () => {
   return firebase.auth().signOut();
 };

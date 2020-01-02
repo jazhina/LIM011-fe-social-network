@@ -38,7 +38,7 @@ import { changeView } from '../view-controler/index.js';
     }
     return infoUserActual;
  };
-
+// Desloguear 
 export const promOutUser = () => {
   outUser().then(function() {
     console.log('Sign-out successful');
