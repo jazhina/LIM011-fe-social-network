@@ -60,16 +60,6 @@ export default () => {
             <button class="btn-share" id = "compartir">Compartir</button>
         </div>
       </form>
-      <div class="coment">
-        <div class="title-note">
-          <p>Publicado por Jean Cedron - Comunal</p><i class="fas fa-times"></i>
-        </div>
-        <p class="text-coment">Hola a todos!</p>
-        <div class="section-btns-note">
-          <button class="btns-note"><i class="far fa-grin-hearts icons-white"></i></button>
-          <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
-        </div>
-      </div>
       <div id="comentarios">
       </div>
     </section>
@@ -89,6 +79,7 @@ export default () => {
 
     db.collection('publicaciones').add({
       contenido: textarea,
+      fecha: new Date(),
     })
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);
@@ -99,42 +90,41 @@ export default () => {
       });
   });
   // LISTAR PUBLICACIONES
+  const d = new Date();
+  const day = d.getDate();
+  const month = d.getMonth();
+  const year = d.getFullYear();
+  const hours = d.getHours();
+  const minutes = d.getMinutes();
   const comentarios = divElement.querySelector('#comentarios');
-  db.collection('publicaciones').onSnapshot((querySnapshot) => {
+  db.collection('publicaciones').orderBy('fecha').onSnapshot((querySnapshot) => {
     comentarios.innerHTML = '';
     querySnapshot.forEach((doc) => {
       console.log(`${doc.id} => ${doc.data().contenido}`);
       comentarios.innerHTML += `
           <div class = "coment">
             <div class="title-note">
-            <figure class="figure-photo">
-            <img id="photoComment" class="photo"  alt="foto de perfil">
-            </figure>
-            <p>Publicado por Jean Cedron - Comunal</p><i class="fas fa-times"></i>
+            <p>Publicado por ${userActual().name}  -  ${day}/${month + 1}/${year} a las ${hours}:${minutes}</p><i class="eliminar fas fa-times"></i>
             </div>
               <p class="text-coment">${doc.data().contenido}</p>
             <div class="section-btns-note">
-              <button class="btns-note" id = "eliminar" ><i class="far fa-grin-hearts icons-white"></i></button>
+              <button class='btns-note'><i class="far fa-grin-hearts icons-white"></i></button>
               <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
             </div>
           </div>
          `;
+      // ELIMINAR PUBLICACIONES
+      comentarios.querySelector('.eliminar').addEventListener('click', () => {
+        db.collection('publicaciones').doc(doc.id).delete().then(() => {
+          console.log('Eliminado');
+        })
+          .catch((error) => {
+            console.error('Error no se pudo remover: ', error);
+          });
+      });
     });
   });
 
-  /* // PRUEBA PERFIL
-const perfil = divElement.querySelector('#perfil');
-db.collection("users").onSnapshot((querySnapshot) => {
-  perfil.innerHTML = '';
-   querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().email}`);
-        perfil.innerHTML += `
-              <p>${doc.data().email}</p>
-              <p>${doc.data().name}</p>
-              <img class="photo" src=${doc.data().photo}/>
-         `
-     });
-}); */
   // Funciones
   const menuMovil = divElement.querySelector('#menu-movil');
   menuMovil.addEventListener('click', menuAnimation);
@@ -165,7 +155,7 @@ db.collection("users").onSnapshot((querySnapshot) => {
   nameUserDestok.innerHTML = userActual().name;
   nameUserHeader.innerHTML = userActual().name;
 
-  //Modal para foto de perfil
+  // Modal para foto de perfil
 
   photoProfile.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
   photoProfileDestok.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });

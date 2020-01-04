@@ -4,6 +4,11 @@ margin: 0;
 border: 0;
 }
 
+.eliminar {
+    border: 2px solid red;
+    width: 10px;
+}
+
 .img-header {
     height: 30%;
     width: 100%;
@@ -169,6 +174,7 @@ border: 0;
     margin-right: auto;
     box-sizing: border-box;
     margin-bottom: 17px;
+    margin-top: 30px;
 }
 
 .coment p {

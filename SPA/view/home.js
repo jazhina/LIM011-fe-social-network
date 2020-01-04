@@ -49,6 +49,5 @@ export default () => {
       const credential = error.credential;
     });
   });
-
   return divElement;
 };
