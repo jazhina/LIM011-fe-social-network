@@ -70,6 +70,7 @@ export default () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
+  
   // PUBLICAR
   const publicar = divElement.querySelector('#compartir');
   publicar.addEventListener('click', (e) => {
@@ -104,7 +105,7 @@ export default () => {
       comentarios.innerHTML += `
           <div class = "coment">
             <div class="title-note">
-            <p>Publicado por ${userActual().name}  -  ${day}/${month + 1}/${year} a las ${hours}:${minutes}</p><i class="eliminar fas fa-times"></i>
+            <p>Publicado por ${userActual().name}  -  ${day}/${month + 1}/${year} a las ${hours}:${minutes}</p><i class="eliminar fas fa-times"></i><a class="editar">editar</a>
             </div>
               <p class="text-coment">${doc.data().contenido}</p>
             <div class="section-btns-note">
@@ -122,9 +123,29 @@ export default () => {
             console.error('Error no se pudo remover: ', error);
           });
       });
-    });
+      
+      // EDITAR PUBLICACIONES
+          comentarios.querySelector('.editar').addEventListener('click', () => {
+            const guardar = divElement.querySelector('.btn-share');
+            guardar.innerHTML = 'Editar';
+            divElement.querySelector('#texto').value = `${doc.data().contenido}`;
+            guardar.addEventListener('click', () => {
+              return db.collection("publicaciones").doc(doc.id).update({               
+                contenido: "Hola Ohayo como estas buen dia",
+              })
+              .then(function() {
+                  console.log("Publicacion editada");
+                  console.log(`${doc.id}=> ${doc.data().contenido}`);
+                // comentarios.querySelector('.text-coment').value = '';
+              })
+              .catch(function(error) {
+                  console.error("No se pudo editar ", error);
+              });
+            });
+        });
+      });
   });
-
+      
   // Funciones
   const menuMovil = divElement.querySelector('#menu-movil');
   menuMovil.addEventListener('click', menuAnimation);
