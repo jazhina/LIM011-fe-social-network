@@ -1,5 +1,6 @@
 import { menuAnimation } from '../functions/animation.js';
-import { userActual, promOutUser } from '../functions/controller-firebase.js'
+import { userActual, promOutUser } from '../functions/controller-firebase.js';
+import { closeModal, closeGrey, showModal } from '../functions/functions-dom.js';
 
 export default () => {
   const db = firebase.firestore();
@@ -45,6 +46,12 @@ export default () => {
       </div>
       </div>
     </section>
+    <div id="modal" class="modal reset">
+    <figure id="flex" class="reset">
+    <span id="close" type="button">x</span>
+        <img id="contenido" src="" class="reset" alt="foto de perfil">
+        </figure>
+  </div>
     <section class="section-publics-muro">
       <form class="form">
         <textarea id = "texto" placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
@@ -53,16 +60,6 @@ export default () => {
             <button class="btn-share" id = "compartir">Compartir</button>
         </div>
       </form>
-      <div class="coment">
-        <div class="title-note">
-          <p>Publicado por Jean Cedron - Comunal</p><i class="fas fa-times"></i>
-        </div>
-        <p class="text-coment">Hola a todos!</p>
-        <div class="section-btns-note">
-          <button class="btns-note"><i class="far fa-grin-hearts icons-white"></i></button>
-          <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
-        </div>
-      </div>
       <div id="comentarios">
       </div>
     </section>
@@ -73,56 +70,60 @@ export default () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
-  // PUBLICAR 
+  // PUBLICAR
   const publicar = divElement.querySelector('#compartir');
- publicar.addEventListener('click', (e) => {
-     e.preventDefault()
-     const textarea = divElement.querySelector('#texto').value;
-     console.log(textarea);
+  publicar.addEventListener('click', (e) => {
+    e.preventDefault();
+    const textarea = divElement.querySelector('#texto').value;
+    console.log(textarea);
 
-   db.collection("publicaciones").add({
-    contenido: textarea,
-    fecha: new Date(),
-   })
-    .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
+    db.collection('publicaciones').add({
+      contenido: textarea,
+      fecha: new Date(),
+    })
+      .then((docRef) => {
+        console.log('Document written with ID: ', docRef.id);
         divElement.querySelector('#texto').value = '';
-     })
-     .catch(function(error) {
-        console.error("Error: ", error);
-     });
-});
-// LISTAR PUBLICACIONES 
-const comentarios = divElement.querySelector('#comentarios');
- db.collection("publicaciones").orderBy("fecha").onSnapshot((querySnapshot) => {
-  comentarios.innerHTML = '';
-   querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().contenido}`);
-        comentarios.innerHTML += `
+      })
+      .catch((error) => {
+        console.error('Error: ', error);
+      });
+  });
+  // LISTAR PUBLICACIONES
+  const d = new Date();
+  const day = d.getDate();
+  const month = d.getMonth();
+  const year = d.getFullYear();
+  const hours = d.getHours();
+  const minutes = d.getMinutes();
+  const comentarios = divElement.querySelector('#comentarios');
+  db.collection('publicaciones').orderBy('fecha').onSnapshot((querySnapshot) => {
+    comentarios.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data().contenido}`);
+      comentarios.innerHTML += `
           <div class = "coment">
             <div class="title-note">
-            <figure class="figure-photo">
-            <img id="photoComment" class="photo">
-            </figure>
-            <p>Publicado por</p><i class="fas fa-times"></i>
+            <p>Publicado por ${userActual().name}  -  ${day}/${month + 1}/${year} a las ${hours}:${minutes}</p><i class="eliminar fas fa-times"></i>
             </div>
               <p class="text-coment">${doc.data().contenido}</p>
             <div class="section-btns-note">
-              <button class='eliminar'><i class="far fa-grin-hearts icons-white"></i>Eliminar</button>
+              <button class='btns-note'><i class="far fa-grin-hearts icons-white"></i></button>
               <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
             </div>
           </div>
-         `
-            // ELIMINAR PUBLICACIONES
-            comentarios.querySelector('.eliminar').addEventListener('click', () =>{
-              db.collection("publicaciones").doc('contenido').delete().then(function() {
-                console.log("Eliminado");
-              }).catch(function(error) {
-                console.error("Error no se pudo remover: ", error);
-              });
-            }); 
-     });
-});
+         `;
+      // ELIMINAR PUBLICACIONES
+      comentarios.querySelector('.eliminar').addEventListener('click', () => {
+        db.collection('publicaciones').doc(doc.id).delete().then(() => {
+          console.log('Eliminado');
+        })
+          .catch((error) => {
+            console.error('Error no se pudo remover: ', error);
+          });
+      });
+    });
+  });
 
   // Funciones
   const menuMovil = divElement.querySelector('#menu-movil');
@@ -130,26 +131,36 @@ const comentarios = divElement.querySelector('#comentarios');
   const menuDestok = divElement.querySelector('#icon-down');
   menuDestok.addEventListener('click', menuAnimation);
 
-  //logOut
+  // logOut
 
   const outSesion = divElement.querySelector('#out-menu-destok');
-  outSesion.addEventListener('click', (e)=> {
+  outSesion.addEventListener('click', (e) => {
     e.preventDefault();
     promOutUser();
   });
 
- //asignancion datos básicos a perfil
- const photoProfile = divElement.querySelector('#photoProfile');
- const nameUser = divElement.querySelector('#nameUser');
- const photoProfileDestok = divElement.querySelector('#photoProfileDestok');
- const nameUserDestok = divElement.querySelector('#nameUserDestok');
- const nameUserHeader = divElement.querySelector('#nameUserHeader');
+  // asignancion datos básicos a perfil
+  const photoProfile = divElement.querySelector('#photoProfile');
+  const nameUser = divElement.querySelector('#nameUser');
+  const photoProfileDestok = divElement.querySelector('#photoProfileDestok');
+  const nameUserDestok = divElement.querySelector('#nameUserDestok');
+  const nameUserHeader = divElement.querySelector('#nameUserHeader');
+  const contenido = divElement.querySelector('#contenido');
+  const modal = divElement.querySelector('#modal');
+  const close = divElement.querySelector('#close');
 
- photoProfile.src = userActual().photoUrl;
- nameUser.innerHTML = userActual().name;
- photoProfileDestok.src = userActual().photoUrl;
- nameUserDestok.innerHTML = userActual().name;
- nameUserHeader.innerHTML = userActual().name;
+  photoProfile.src = userActual().photoUrl;
+  nameUser.innerHTML = userActual().name;
+  photoProfileDestok.src = userActual().photoUrl;
+  nameUserDestok.innerHTML = userActual().name;
+  nameUserHeader.innerHTML = userActual().name;
+
+  // Modal para foto de perfil
+
+  photoProfile.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
+  photoProfileDestok.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
+  close.addEventListener('click', () => { closeModal(modal); });
+  window.addEventListener('click', () => { closeGrey(modal); });
 
   return divElement;
 };

@@ -1,18 +1,15 @@
+/* eslint-disable import/no-cycle */
 import { components } from '../view/index.js';
 
-const changeView = (route) => {
+export const changeView = (route) => {
   const container = document.getElementById('container');
   container.innerHTML = '';
-  console.log(window.location.hash);
   switch (route) {
-    case '': { return container.appendChild(components.home())}
-    case '#catalogo': { return container.appendChild(components.catalogo())}
-    case '#/catalogo': { return container.appendChild(components.catalogo()) }
-    case '#/Registro': { return container.appendChild(components.registrarse())}
+    case '': { return container.appendChild(components.home()); }
+    case '#catalogo': { return container.appendChild(components.catalogo()); }
+    case '#/catalogo': { return container.appendChild(components.catalogo()); }
+    case '#/Registro': { return container.appendChild(components.registrarse()); }
     default:
-      { return container.appendChild(components.diferent()) }
-      break;
+    { return container.appendChild(components.diferent()); }
   }
 };
-
-export { changeView };
