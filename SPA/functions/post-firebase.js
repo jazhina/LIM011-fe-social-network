@@ -1,6 +1,6 @@
 import { createComment, time } from './functions-dom.js';
 
-export const addCommentFirestore = (texto, userActual) => {
+export const addCommentFirestore = (texto, userActual, privacy) => {
   console.log(userActual().name);
   const db = firebase.firestore();
   return db.collection('publicaciones').add({
@@ -11,6 +11,7 @@ export const addCommentFirestore = (texto, userActual) => {
     hora: `${time(new Date()).hours}:${time(new Date()).minutes}`,
     likes: 0,
     fechaYhora: new Date(),
+    privacidad: privacy.value,
   });
 };
 
@@ -59,7 +60,7 @@ export const editCommentDom = (texto) => {
   texto.focus();
 };
 
-export const saveNewComment = (texto, container, id) => {
-  newText(texto, id);
+export const saveNewComment = (texto, container, id, privacy) => {
+  newText(texto, id, privacy);
   texto.disabled = true;
 };

@@ -47,6 +47,11 @@ export const createComment = (container, doc) => {
             <div class="section-btns-note">
               <button class='btns-note'><i class="far fa-grin-hearts icons-white"></i></button>
               <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
+                <select class="comboPrivacy btns-noteEdit">
+                <option value="publica">Privacidad</option>
+                <option value="publica">Pública</option>
+                <option value="privada">Privada</option>
+              </select>
               <button class="save btns-noteEdit hide">Guardar</button>
               <button class="edit btns-noteEdit">Editar</button>
             </div>
@@ -65,7 +70,7 @@ export const createComment = (container, doc) => {
   });
 
   save.addEventListener('click', () => {
-    saveNewComment(texto, container, doc.id);
+    saveNewComment(texto, container, doc.id, privacy);
     edit.classList.remove('hide');
     save.classList.add('hide');
   });
