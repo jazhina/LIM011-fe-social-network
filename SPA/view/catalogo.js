@@ -136,6 +136,7 @@ export default () => {
               .then(function() {
                   console.log("Publicacion editada");
                   console.log(`${doc.id}=> ${doc.data().contenido}`);
+                  guardar.innerHTML = 'Compartir';
                 // comentarios.querySelector('.text-coment').value = '';
               })
               .catch(function(error) {
