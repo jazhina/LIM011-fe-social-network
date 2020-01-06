@@ -1,4 +1,4 @@
-import { promAuthFace, promAuthGoogle } from '../functions/controller-firebase.js';
+import { promAuthFace, promAuthGoogle} from '../functions/controller-firebase.js';
 
 export default () => {
   const viewHome = `<header class="header-inicio">
@@ -15,8 +15,10 @@ export default () => {
       <button class="btn-init" type="text" id="button"><a id= "changeView" href="">Iniciar sesión</a></button>
       <p class="text">O bien ingresa con...</p>
       <section class="section-redes">
-        <button class="btn-redes"><i class="fab fa-facebook"></i></button>
-        <button class="btn-redes"><i class="fab fa-google"></i></button>
+
+        <i id="btn-facebook"><img class="icon-network" src="https://img.icons8.com/color/48/000000/facebook-new.png"></i>
+
+        <i id="btn-google"><img class="icon-network" src="https://img.icons8.com/color/48/000000/google-logo.png"></i>
       </section>
       <p class="text">¿No tienes una cuenta? <a class="text-link" href="#/Registro">Regístrate</a></p>
     </form>
@@ -49,5 +51,6 @@ export default () => {
       const credential = error.credential;
     });
   });
+
   return divElement;
 };
