@@ -1,8 +1,7 @@
-import { promAuthFace, promAuthGoogle } from '../functions/controller-firebase.js'
+import { promAuthFace, promAuthGoogle } from '../functions/controller-firebase.js';
 
 export default () => {
-  const viewHome =
-    `<header class="header-inicio">
+  const viewHome = `<header class="header-inicio">
     <figure class="img-header">
       <img src="img/fondo-pet.jpg" alt="fondo de cabecera">
     </figure>
@@ -16,8 +15,8 @@ export default () => {
       <button class="btn-init" type="text" id="button"><a id= "changeView" href="">Iniciar sesión</a></button>
       <p class="text">O bien ingresa con...</p>
       <section class="section-redes">
-        <button class="btn-redes" id="btnFace"><i class="fab fa-facebook"></i></button>
-        <button class="btn-redes" id="btnGoogle"><i class="fab fa-google"></i></button>
+        <button class="btn-redes"><i class="fab fa-facebook"></i></button>
+        <button class="btn-redes"><i class="fab fa-google"></i></button>
       </section>
       <p class="text">¿No tienes una cuenta? <a class="text-link" href="#/Registro">Regístrate</a></p>
     </form>
@@ -28,18 +27,27 @@ export default () => {
   divElement.classList.add('div-home');
   divElement.innerHTML = viewHome;
 
-  //funciones de autentificación
-  const btnFace = divElement.querySelector('#btnFace')
+  // funciones de autentificación
+  const btnFace = divElement.childNodes[2].childNodes[5].childNodes[9].childNodes[1];
   btnFace.addEventListener('click', (e) => {
     e.preventDefault();
-    promAuthFace();
+    promAuthFace().catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
+      const credential = error.credential;
+    });
   });
 
-  const btnGoogle = divElement.querySelector('#btnGoogle')
+  const btnGoogle = divElement.querySelector('.section-redes').lastElementChild;
   btnGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    promAuthGoogle();
+    promAuthGoogle().catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
+      const credential = error.credential;
+    });
   });
-
   return divElement;
 };

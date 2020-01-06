@@ -4,6 +4,11 @@ margin: 0;
 border: 0;
 }
 
+.eliminar {
+    border: 2px solid red;
+    width: 10px;
+}
+
 .img-header {
     height: 30%;
     width: 100%;
@@ -169,6 +174,7 @@ border: 0;
     margin-right: auto;
     box-sizing: border-box;
     margin-bottom: 17px;
+    margin-top: 30px;
 }
 
 .coment p {
@@ -282,6 +288,69 @@ hr {
 
 #main-muro {
     margin-top: 55px;
+}
+
+.reset {
+    padding: 0;
+    margin: 0;
+}
+
+/* Modal para foto */
+#contenido {
+    width: 100%;
+}
+
+#modal {
+    z-index: 400;
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.63);
+    top: 0;
+}
+
+#flex {
+    padding: 5px;
+    background: blanchedalmond;
+    position: relative;
+    margin: auto;
+    width: 30%;
+    height: auto;
+    display: flex;
+    animation-name: modal;
+    animation-duration: 1s;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 0px;
+}
+
+#close {
+    cursor: pointer;
+    color: brown;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+@keyframes modal {
+    from {
+        top: -330px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.pointer:hover {
+    color: brown;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 @media (min-width: 600px) {
