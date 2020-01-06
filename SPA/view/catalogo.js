@@ -1,9 +1,9 @@
 import { menuAnimation } from '../functions/animation.js';
-import { userActual, promOutUser } from '../functions/controller-firebase.js';
+import { userActual, promOutUser, promAddCommentFirestore } from '../functions/controller-firebase.js';
 import { closeModal, closeGrey, showModal } from '../functions/functions-dom.js';
+import { showAllComments } from '../functions/post-firebase.js';
 
 export default () => {
-  const db = firebase.firestore();
   const viewCatalogo = `
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
@@ -70,62 +70,22 @@ export default () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
-  // PUBLICAR
+  // AGREGAR COMENTARIO A FIRESTORE
+  const comentarios = divElement.querySelector('#comentarios');
   const publicar = divElement.querySelector('#compartir');
   publicar.addEventListener('click', (e) => {
     e.preventDefault();
-    const textarea = divElement.querySelector('#texto').value;
-    console.log(textarea);
-
-    db.collection('publicaciones').add({
-      contenido: textarea,
-      fecha: new Date(),
-    })
-      .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
-        divElement.querySelector('#texto').value = '';
-      })
-      .catch((error) => {
-        console.error('Error: ', error);
-      });
-  });
-  // LISTAR PUBLICACIONES
-  const d = new Date();
-  const day = d.getDate();
-  const month = d.getMonth();
-  const year = d.getFullYear();
-  const hours = d.getHours();
-  const minutes = d.getMinutes();
-  const comentarios = divElement.querySelector('#comentarios');
-  db.collection('publicaciones').orderBy('fecha').onSnapshot((querySnapshot) => {
-    comentarios.innerHTML = '';
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data().contenido}`);
-      comentarios.innerHTML += `
-          <div class = "coment">
-            <div class="title-note">
-            <p>Publicado por ${userActual().name}  -  ${day}/${month + 1}/${year} a las ${hours}:${minutes}</p><i class="eliminar fas fa-times"></i>
-            </div>
-              <p class="text-coment">${doc.data().contenido}</p>
-            <div class="section-btns-note">
-              <button class='btns-note'><i class="far fa-grin-hearts icons-white"></i></button>
-              <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
-            </div>
-          </div>
-         `;
-      // ELIMINAR PUBLICACIONES
-      comentarios.querySelector('.eliminar').addEventListener('click', () => {
-        db.collection('publicaciones').doc(doc.id).delete().then(() => {
-          console.log('Eliminado');
-        })
-          .catch((error) => {
-            console.error('Error no se pudo remover: ', error);
-          });
-      });
-    });
+    const texto = divElement.querySelector('#texto');
+    promAddCommentFirestore(texto, comentarios);
+    showAllComments(comentarios);
+    texto.value = '';
   });
 
-  // Funciones
+  // AGREGAR COMENTARIO EN LA PAGINA
+
+
+
+  // Funciones para animacion de Menú
   const menuMovil = divElement.querySelector('#menu-movil');
   menuMovil.addEventListener('click', menuAnimation);
   const menuDestok = divElement.querySelector('#icon-down');
@@ -162,5 +122,7 @@ export default () => {
   close.addEventListener('click', () => { closeModal(modal); });
   window.addEventListener('click', () => { closeGrey(modal); });
 
+  //cargar y mostrar todos los comenarios
+  window.onload = showAllComments(comentarios);
   return divElement;
 };
