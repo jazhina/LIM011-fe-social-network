@@ -131,7 +131,7 @@ export default () => {
             divElement.querySelector('#texto').value = `${doc.data().contenido}`;
             guardar.addEventListener('click', () => {
               return db.collection("publicaciones").doc(doc.id).update({               
-                contenido: "Hola Ohayo como estas buen dia",
+                contenido: "Ohayo como estas buen dia",
               })
               .then(function() {
                   console.log("Publicacion editada");
