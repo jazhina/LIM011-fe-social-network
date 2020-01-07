@@ -78,3 +78,9 @@ export const createComment = (container, doc) => {
   });
   container.appendChild(divContainer);
 };
+
+export const removeChild = (elementFhater) => {
+  while (elementFhater.firstChild) {
+    elementFhater.remove(elementFhater.firstChild);
+  }
+};

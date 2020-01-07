@@ -1,7 +1,6 @@
-import { createComment, time } from './functions-dom.js';
+import { createComment, time, removeChild } from './functions-dom.js';
 
 export const addCommentFirestore = (texto, userActual, privacy) => {
-  console.log(userActual().name);
   const db = firebase.firestore();
   return db.collection('publicaciones').add({
     id: userActual().uid,
@@ -16,13 +15,13 @@ export const addCommentFirestore = (texto, userActual, privacy) => {
 };
 
 export const showAllComments = (container) => {
-  const contain = container;
-  contain.innerHTML = '';
+  removeChild(container);
+  console.log(container);
   const docRef = firebase.firestore().collection('publicaciones');
   docRef.orderBy('fechaYhora', 'desc').onSnapshot((allDocs) => {
     if (allDocs.size >= 1) {
       allDocs.forEach((doc) => {
-        createComment(contain, doc);
+        createComment(container, doc);
       });
     }
   });
@@ -40,13 +39,15 @@ export const deleteComment = (id, container) => {
     });
 };
 
-export const newText = (texto, id) => {
+export const newText = (texto, id, privacy, container) => {
   const ref = firebase.firestore().collection('publicaciones').doc(id);
   return ref.update({
     contenido: texto.value,
+    privacidad: privacy,
   })
     .then(() => {
       console.log('Document successfully updated!');
+      showAllComments(container);
     })
     .catch((error) => {
     // The document probably doesn't exist.
@@ -61,6 +62,6 @@ export const editCommentDom = (texto) => {
 };
 
 export const saveNewComment = (texto, container, id, privacy) => {
-  newText(texto, id, privacy);
+  newText(texto, id, privacy, container);
   texto.disabled = true;
 };
