@@ -78,14 +78,13 @@ export default () => {
   // AGREGAR COMENTARIO A FIRESTORE
   const comentarios = divElement.querySelector('#comentarios');
   const publicar = divElement.querySelector('#compartir');
-  const privacy = divElement.querySelector('.comboPrivacy').value;
+  const privacy = divElement.querySelector('.comboPrivacy');
   publicar.addEventListener('click', (e) => {
     e.preventDefault();
     const texto = divElement.querySelector('#texto');
     promAddCommentFirestore(texto, privacy);
     showAllComments(comentarios);
     texto.value = '';
-    console.log(privacy);
   });
 
   // AGREGAR COMENTARIO EN LA PAGINA

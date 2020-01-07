@@ -61,6 +61,8 @@ export const createComment = (container, doc) => {
   const texto = divContainer.querySelector('.text-coment');
   const edit = divContainer.querySelector('.edit');
   const save = divContainer.querySelector('.save');
+  const privacy = divContainer.querySelector('.comboPrivacy');
+  privacy.value = doc.data().privacidad;
   texto.disabled = true;
   btnDelete.addEventListener('click', () => { deleteComment(doc.id, container); });
   edit.addEventListener('click', () => {
@@ -70,7 +72,7 @@ export const createComment = (container, doc) => {
   });
 
   save.addEventListener('click', () => {
-    saveNewComment(texto, container, doc.id, privacy);
+    saveNewComment(texto, container, doc.id, privacy.value);
     edit.classList.remove('hide');
     save.classList.add('hide');
   });
