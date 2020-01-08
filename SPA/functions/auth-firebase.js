@@ -3,9 +3,10 @@ import { changeView } from '../view-controler/index.js';
 
 export const initFire = () => {
   firebase.auth().onAuthStateChanged((user) => {
+    console.log('gsddgs', user);
     if (user) {
       console.log('conectado');
-      changeView('#catalogo');
+      changeView('#/catalogo');
     } else {
       console.log('El usuario NO stá conectado');
       changeView('');

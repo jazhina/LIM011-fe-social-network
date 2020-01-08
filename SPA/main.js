@@ -9,7 +9,7 @@ const init = () => {
     projectId: 'pet-lovers-5dca4',
   });
 
-  changeView(window.location.hash);
+
   window.addEventListener('hashchange', () => changeView(window.location.hash));
   initFire();
 };

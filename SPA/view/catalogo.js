@@ -1,9 +1,10 @@
 import { menuAnimation } from '../functions/animation.js';
 import { userActual, promOutUser, promAddCommentFirestore } from '../functions/controller-firebase.js';
-import { closeModal, closeGrey, showModal } from '../functions/functions-dom.js';
-import { showAllComments } from '../functions/post-firebase.js';
+import { closeModal, closeGrey, showModal, createComment } from '../functions/functions-dom.js';
+import { iterateComments } from '../functions/post-firebase.js';
 
 export default (posts) => {
+  console.log(posts);
   const viewCatalogo = `
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
@@ -83,7 +84,6 @@ export default (posts) => {
     e.preventDefault();
     const texto = divElement.querySelector('#texto');
     promAddCommentFirestore(texto, privacy);
-    //showAllComments(comentarios);
     texto.value = '';
   });
 
@@ -135,7 +135,8 @@ export default (posts) => {
   close.addEventListener('click', () => { closeModal(modal); });
   window.addEventListener('click', () => { closeGrey(modal); });
 
-  //cargar y mostrar todos los comenarios
-  //window.onload = showAllComments(comentarios);
+  // Pintando todos los comentarios
+  iterateComments(posts, createComment, comentarios);
+
   return divElement;
 };
