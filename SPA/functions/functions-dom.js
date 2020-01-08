@@ -48,7 +48,6 @@ export const createComment = (container, doc) => {
               <button class='btns-note'><i class="far fa-grin-hearts icons-white"></i></button>
               <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
                 <select class="comboPrivacy btns-noteEdit">
-                <option value="publica">Privacidad</option>
                 <option value="publica">Pública</option>
                 <option value="privada">Privada</option>
               </select>
@@ -62,6 +61,7 @@ export const createComment = (container, doc) => {
   const edit = divContainer.querySelector('.edit');
   const save = divContainer.querySelector('.save');
   const privacy = divContainer.querySelector('.comboPrivacy');
+  console.log(privacy.value);
   privacy.value = doc.data.privacidad;
   texto.disabled = true;
   btnDelete.addEventListener('click', () => { deleteComment(doc.id); });
