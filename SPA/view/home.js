@@ -30,7 +30,7 @@ export default () => {
   divElement.innerHTML = viewHome;
 
   // funciones de autentificación
-  const btnFace = divElement.childNodes[2].childNodes[5].childNodes[9].childNodes[1];
+  const btnFace = divElement.querySelector('.section-redes').firstElementChild;
   btnFace.addEventListener('click', (e) => {
     e.preventDefault();
     promAuthFace().catch((error) => {
