@@ -3,7 +3,7 @@ import { userActual, promOutUser, promAddCommentFirestore } from '../functions/c
 import { closeModal, closeGrey, showModal } from '../functions/functions-dom.js';
 import { showAllComments } from '../functions/post-firebase.js';
 
-export default () => {
+export default (posts) => {
   const viewCatalogo = `
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
@@ -83,7 +83,7 @@ export default () => {
     e.preventDefault();
     const texto = divElement.querySelector('#texto');
     promAddCommentFirestore(texto, privacy);
-    showAllComments(comentarios);
+    //showAllComments(comentarios);
     texto.value = '';
   });
 

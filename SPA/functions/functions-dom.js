@@ -80,7 +80,10 @@ export const createComment = (container, doc) => {
 };
 
 export const removeChild = (elementFhater) => {
-  while (elementFhater.firstChild) {
-    elementFhater.remove(elementFhater.firstChild);
+  const numChilds = elementFhater.childElementCount;
+  for (let index = 0; index <= numChilds; index + 1) {
+    console.log(elementFhater.children[index]);
+    elementFhater.removeChild(elementFhater.firstElementChild);
   }
+  console.log(elementFhater.childNodes);
 };
