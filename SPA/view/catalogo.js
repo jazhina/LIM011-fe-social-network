@@ -83,7 +83,7 @@ export default (posts) => {
     e.preventDefault();
     const texto = divElement.querySelector('#texto');
     promAddCommentFirestore(texto, privacy);
-    //showAllComments(comentarios);
+    // showAllComments(comentarios);
     texto.value = '';
   });
 

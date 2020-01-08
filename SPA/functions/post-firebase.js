@@ -30,6 +30,7 @@ export const showAllComments = (getData) => {
         /* createComment(container, doc); */
       });
       getData(arrData);
+     // console.log(getData(arrData));
     }
   });
 };

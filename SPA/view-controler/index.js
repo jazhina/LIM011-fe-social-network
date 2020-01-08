@@ -9,7 +9,7 @@ export const changeView = (route) => {
     case '': { return container.appendChild(components.home()); }
     case '#catalogo': {
       showAllComments((data) => {
-        console.log(data);
+         console.log(data);
         return data
       }); 
       return container.appendChild(components.catalogo());
