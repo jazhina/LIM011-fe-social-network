@@ -41,9 +41,9 @@ export const createComment = (container, doc) => {
   divContainer.classList.add('coment');
   const comment = `
             <div class="title-note">
-            <p>Publicado por ${doc.data().nombre}  - ${doc.data().hora} del ${doc.data().fecha} </p><i class="eliminar fas fa-times"></i>
+            <p>Publicado por ${doc.data.nombre}  - ${doc.data.hora} del ${doc.data.fecha} </p><i class="eliminar fas fa-times"></i>
             </div>
-              <textarea class="text-coment">${doc.data().contenido}</textarea>
+              <textarea class="text-coment">${doc.data.contenido}</textarea>
             <div class="section-btns-note">
               <button class='btns-note'><i class="far fa-grin-hearts icons-white"></i></button>
               <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
@@ -62,9 +62,9 @@ export const createComment = (container, doc) => {
   const edit = divContainer.querySelector('.edit');
   const save = divContainer.querySelector('.save');
   const privacy = divContainer.querySelector('.comboPrivacy');
-  privacy.value = doc.data().privacidad;
+  privacy.value = doc.data.privacidad;
   texto.disabled = true;
-  btnDelete.addEventListener('click', () => { deleteComment(doc.id, container); });
+  btnDelete.addEventListener('click', () => { deleteComment(doc.id); });
   edit.addEventListener('click', () => {
     save.classList.remove('hide');
     edit.classList.add('hide');
@@ -72,18 +72,9 @@ export const createComment = (container, doc) => {
   });
 
   save.addEventListener('click', () => {
-    saveNewComment(texto, container, doc.id, privacy.value);
+    saveNewComment(texto, doc.id, privacy.value);
     edit.classList.remove('hide');
     save.classList.add('hide');
   });
   container.appendChild(divContainer);
-};
-
-export const removeChild = (elementFhater) => {
-  const numChilds = elementFhater.childElementCount;
-  for (let index = 0; index <= numChilds; index + 1) {
-    console.log(elementFhater.children[index]);
-    elementFhater.removeChild(elementFhater.firstElementChild);
-  }
-  console.log(elementFhater.childNodes);
 };

@@ -1,4 +1,4 @@
-import { createComment, time, removeChild } from './functions-dom.js';
+import { time } from './functions-dom.js';
 
 export const addCommentFirestore = (texto, userActual, privacy) => {
   const db = firebase.firestore();
@@ -14,32 +14,30 @@ export const addCommentFirestore = (texto, userActual, privacy) => {
   });
 };
 
-export const showAllComments = (getData) => {
-  //removeChild(container);
-  //console.log(container);
+export const showAllComments = (fnGetData) => {
+  // removeChild(container);
+  // console.log(container);
   const docRef = firebase.firestore().collection('publicaciones');
   docRef.orderBy('fechaYhora', 'desc').onSnapshot((allDocs) => {
-    if (allDocs.size >= 1) {
-      const arrData = [];
-      allDocs.forEach((doc) => {
-        const obj = {
-          id: doc.id,
-          data: doc.data(),
-        };
-        arrData.push(obj);
-        /* createComment(container, doc); */
-      });
-      getData(arrData);
-     // console.log(getData(arrData));
-    }
+    // if (allDocs.size >= 1) {
+    const arrData = [];
+    allDocs.forEach((doc) => {
+      const obj = {
+        id: doc.id,
+        data: doc.data(),
+      };
+      arrData.push(obj);
+      /* createComment(container, doc); */
+    });
+    fnGetData(arrData);
+  //  }
   });
 };
 
-export const deleteComment = (id, container) => {
+export const deleteComment = (id) => {
   console.log(id);
   firebase.firestore().collection('publicaciones').doc(id).delete()
     .then(() => {
-      //showAllComments(container);
       console.log('Eliminado');
     })
     .catch((error) => {
@@ -47,7 +45,8 @@ export const deleteComment = (id, container) => {
     });
 };
 
-export const newText = (texto, id, privacy, container) => {
+export const newText = (texto, id, privacy) => {
+  console.log(id);
   const ref = firebase.firestore().collection('publicaciones').doc(id);
   return ref.update({
     contenido: texto.value,
@@ -55,7 +54,6 @@ export const newText = (texto, id, privacy, container) => {
   })
     .then(() => {
       console.log('Document successfully updated!');
-      //showAllComments(container);
     })
     .catch((error) => {
     // The document probably doesn't exist.
@@ -69,7 +67,14 @@ export const editCommentDom = (texto) => {
   texto.focus();
 };
 
-export const saveNewComment = (texto, container, id, privacy) => {
-  newText(texto, id, privacy, container);
+export const saveNewComment = (texto, id, privacy) => {
+  newText(texto, id, privacy);
   texto.disabled = true;
+};
+
+export const iterateComments = (data, createComment, container) => {
+  data.forEach((doc) => {
+    
+    createComment(container, doc);
+  });
 };
