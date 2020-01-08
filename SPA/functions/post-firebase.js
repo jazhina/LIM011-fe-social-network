@@ -74,7 +74,6 @@ export const saveNewComment = (texto, id, privacy) => {
 
 export const iterateComments = (data, createComment, container) => {
   data.forEach((doc) => {
-    
     createComment(container, doc);
   });
 };
