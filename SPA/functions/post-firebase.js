@@ -14,15 +14,22 @@ export const addCommentFirestore = (texto, userActual, privacy) => {
   });
 };
 
-export const showAllComments = (container) => {
-  removeChild(container);
-  console.log(container);
+export const showAllComments = (getData) => {
+  //removeChild(container);
+  //console.log(container);
   const docRef = firebase.firestore().collection('publicaciones');
   docRef.orderBy('fechaYhora', 'desc').onSnapshot((allDocs) => {
     if (allDocs.size >= 1) {
+      const arrData = [];
       allDocs.forEach((doc) => {
-        createComment(container, doc);
+        const obj = {
+          id: doc.id,
+          data: doc.data(),
+        };
+        arrData.push(obj);
+        /* createComment(container, doc); */
       });
+      getData(arrData);
     }
   });
 };
@@ -31,7 +38,7 @@ export const deleteComment = (id, container) => {
   console.log(id);
   firebase.firestore().collection('publicaciones').doc(id).delete()
     .then(() => {
-      showAllComments(container);
+      //showAllComments(container);
       console.log('Eliminado');
     })
     .catch((error) => {
@@ -47,7 +54,7 @@ export const newText = (texto, id, privacy, container) => {
   })
     .then(() => {
       console.log('Document successfully updated!');
-      showAllComments(container);
+      //showAllComments(container);
     })
     .catch((error) => {
     // The document probably doesn't exist.
