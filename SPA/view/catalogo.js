@@ -137,6 +137,5 @@ export default (posts) => {
 
   //cargar y mostrar todos los comenarios
   //window.onload = showAllComments(comentarios);
-  console.log(posts);
   return divElement;
 };

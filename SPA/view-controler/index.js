@@ -8,13 +8,11 @@ export const changeView = (route) => {
   switch (route) {
     case '': { return container.appendChild(components.home()); }
     case '#catalogo': {
-      /* showAllComments((data) => {
-        return data
-      }); */
-      return container.appendChild(components.catalogo(showAllComments((data) => {
+      showAllComments((data) => {
         console.log(data);
-        return data;
-      })));
+        return data
+      }); 
+      return container.appendChild(components.catalogo());
     }
     case '#/catalogo': { return container.appendChild(components.catalogo(showAllComments((data) => {
       return data;
