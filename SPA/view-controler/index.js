@@ -8,10 +8,17 @@ export const changeView = (route) => {
   switch (route) {
     case '': { return container.appendChild(components.home()); }
     case '#catalogo': {
-      showAllComments(() =);
-      return container.appendChild(components.catalogo()); 
+      /* showAllComments((data) => {
+        return data
+      }); */
+      return container.appendChild(components.catalogo(showAllComments((data) => {
+        console.log(data);
+        return data;
+      })));
     }
-    case '#/catalogo': { return container.appendChild(components.catalogo()); }
+    case '#/catalogo': { return container.appendChild(components.catalogo(showAllComments((data) => {
+      return data;
+    }))); }
     case '#/Registro': { return container.appendChild(components.registrarse()); }
     default:
     { return container.appendChild(components.diferent()); }

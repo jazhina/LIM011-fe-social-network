@@ -29,7 +29,7 @@ export const showAllComments = (getData) => {
         arrData.push(obj);
         /* createComment(container, doc); */
       });
-      console.log(arrData);
+      getData(arrData);
     }
   });
 };

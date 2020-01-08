@@ -136,6 +136,7 @@ export default (posts) => {
   window.addEventListener('click', () => { closeGrey(modal); });
 
   //cargar y mostrar todos los comenarios
-  window.onload = showAllComments(comentarios);
+  //window.onload = showAllComments(comentarios);
+  console.log(posts);
   return divElement;
 };
