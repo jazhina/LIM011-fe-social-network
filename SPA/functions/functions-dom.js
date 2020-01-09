@@ -1,3 +1,7 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-param-reassign */
 import { deleteComment, editCommentDom, saveNewComment } from './post-firebase.js';
 
 // Modal para foto
@@ -61,7 +65,6 @@ export const createComment = (container, doc) => {
   const edit = divContainer.querySelector('.edit');
   const save = divContainer.querySelector('.save');
   const privacy = divContainer.querySelector('.comboPrivacy');
-  console.log(privacy.value);
   privacy.value = doc.data.privacidad;
   texto.disabled = true;
   btnDelete.addEventListener('click', () => { deleteComment(doc.id); });

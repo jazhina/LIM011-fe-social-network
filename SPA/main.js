@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
 import { changeView } from './view-controler/index.js';
 import { initFire } from './functions/auth-firebase.js';
 

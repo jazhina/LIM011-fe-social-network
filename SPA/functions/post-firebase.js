@@ -1,3 +1,7 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
+// eslint-disable-next-line import/no-cycle
 import { time } from './functions-dom.js';
 
 export const addCommentFirestore = (texto, userActual, privacy) => {
@@ -62,7 +66,6 @@ export const newText = (texto, id, privacy) => {
 };
 
 export const editCommentDom = (texto) => {
-  console.log(texto.value);
   texto.disabled = false;
   texto.focus();
 };
@@ -72,8 +75,13 @@ export const saveNewComment = (texto, id, privacy) => {
   texto.disabled = true;
 };
 
-export const iterateComments = (data, createComment, container) => {
+export const iterateComments = (data, createComment, container, userActual) => {
   data.forEach((doc) => {
-    createComment(container, doc);
+    if (doc.data.privacidad === 'publica') {
+      createComment(container, doc);
+    }
+    if (userActual().uid === doc.data.id && doc.data.privacidad === 'privada') {
+      createComment(container, doc);
+    }
   });
 };

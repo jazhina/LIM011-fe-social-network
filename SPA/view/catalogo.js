@@ -1,6 +1,10 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-cycle */
 import { menuAnimation } from '../functions/animation.js';
 import { userActual, promOutUser, promAddCommentFirestore } from '../functions/controller-firebase.js';
-import { closeModal, closeGrey, showModal, createComment } from '../functions/functions-dom.js';
+import {
+  closeModal, closeGrey, showModal, createComment,
+} from '../functions/functions-dom.js';
 import { iterateComments } from '../functions/post-firebase.js';
 
 export default (posts) => {
@@ -136,7 +140,7 @@ export default (posts) => {
   window.addEventListener('click', () => { closeGrey(modal); });
 
   // Pintando todos los comentarios
-  iterateComments(posts, createComment, comentarios);
+  iterateComments(posts, createComment, comentarios, userActual);
 
   return divElement;
 };

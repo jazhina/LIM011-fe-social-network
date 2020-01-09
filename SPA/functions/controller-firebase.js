@@ -1,3 +1,6 @@
+/* eslint-disable import/named */
+/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
 /* eslint-disable arrow-body-style */
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
@@ -35,7 +38,7 @@ export const promOutUser = () => {
   outUser().then(() => {
     console.log('Sign-out successful');
   }).catch((error) => {
-    console.log('An error happened');
+    console.log(`An error happened${error}`);
   });
 };
 
