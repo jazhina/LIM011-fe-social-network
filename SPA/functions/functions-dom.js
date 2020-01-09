@@ -67,6 +67,7 @@ export const createComment = (container, doc) => {
   const privacy = divContainer.querySelector('.comboPrivacy');
   privacy.value = doc.data.privacidad;
   texto.disabled = true;
+  privacy.disabled = true;
   btnDelete.addEventListener('click', () => { deleteComment(doc.id); });
   edit.addEventListener('click', () => {
     save.classList.remove('hide');
@@ -80,4 +81,9 @@ export const createComment = (container, doc) => {
     save.classList.add('hide');
   });
   container.appendChild(divContainer);
+  const objElements = {
+    btnEdit: edit,
+    btnClose: btnDelete,
+  };
+  return objElements;
 };

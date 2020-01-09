@@ -207,6 +207,11 @@ textarea:disabled {
     background-color: rgb(255, 255, 255);
 }
 
+select:disabled {
+    color: rgb(37, 36, 36);
+    -webkit-appearance: none;
+}
+
 .section-btns-note {
     padding: 15px;
     background: rgb(221, 220, 220);

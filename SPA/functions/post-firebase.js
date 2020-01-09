@@ -77,8 +77,13 @@ export const saveNewComment = (texto, id, privacy) => {
 
 export const iterateComments = (data, createComment, container, userActual) => {
   data.forEach((doc) => {
-    if (doc.data.privacidad === 'publica') {
+    if (userActual().uid === doc.data.id && doc.data.privacidad === 'publica') {
       createComment(container, doc);
+    }
+    if (userActual().uid !== doc.data.id && doc.data.privacidad === 'publica') {
+      const objElements = createComment(container, doc);
+      objElements.btnEdit.classList.add('hide');
+      objElements.btnClose.classList.add('hide');
     }
     if (userActual().uid === doc.data.id && doc.data.privacidad === 'privada') {
       createComment(container, doc);
