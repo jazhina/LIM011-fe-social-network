@@ -1,10 +1,12 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/no-cycle
-import { time } from './functions-dom.js';
+import { time, removeItemArray } from './functions-dom.js';
+import { userActual } from './controller-firebase.js';
 
-export const addCommentFirestore = (texto, userActual, privacy) => {
+export const addCommentFirestore = (texto, privacy) => {
   const db = firebase.firestore();
   return db.collection('publicaciones').add({
     id: userActual().uid,
@@ -12,7 +14,8 @@ export const addCommentFirestore = (texto, userActual, privacy) => {
     contenido: texto.value,
     fecha: `${time(new Date()).day}/${time(new Date()).month}/${time(new Date()).year}`,
     hora: `${time(new Date()).hours}:${time(new Date()).minutes}`,
-    likes: 0,
+    likesTotal: 0,
+    userLikes: [],
     fechaYhora: new Date(),
     privacidad: privacy.value,
   });
@@ -89,4 +92,47 @@ export const iterateComments = (data, createComment, container, userActual) => {
       createComment(container, doc);
     }
   });
+};
+
+export const likeMoreUpdate = (doc) => {
+  let addlike = true;
+  const arrayUsers = doc.data.userLikes;
+  arrayUsers.forEach((user) => {
+    if (user !== userActual().uid) {
+      addlike = true;
+    }
+  });
+  if (addlike) {
+    arrayUsers.push(userActual().uid);
+  }
+  const ref = firebase.firestore().collection('publicaciones').doc(doc.id);
+  return ref.update({
+    userLikes: arrayUsers,
+    likesTotal: doc.data.likesTotal + 1,
+  });
+};
+
+export const likeLessUpdate = (doc) => {
+  const arrayUsers = doc.data.userLikes;
+  arrayUsers.forEach((user) => {
+    if (user === userActual().uid) {
+      removeItemArray(arrayUsers, userActual().uid);
+    }
+  });
+  const ref = firebase.firestore().collection('publicaciones').doc(doc.id);
+  return ref.update({
+    userLikes: arrayUsers,
+    likesTotal: doc.data.likesTotal - 1,
+  });
+};
+
+export const printLike = (doc) => {
+  let boolean = false;
+  doc.data.userLikes.forEach((user) => {
+    if (userActual().uid === user) {
+      boolean = true;
+    }
+  });
+  console.log(boolean);
+  return boolean;
 };

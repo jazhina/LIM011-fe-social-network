@@ -43,7 +43,7 @@ export const promOutUser = () => {
 };
 
 export const promAddCommentFirestore = (texto, privacy) => {
-  return addCommentFirestore(texto, userActual, privacy).then((docRef) => docRef.id)
+  return addCommentFirestore(texto, privacy).then((docRef) => docRef.id)
     .catch((error) => {
       console.error('Error: ', error);
     });

@@ -2,7 +2,10 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-param-reassign */
-import { deleteComment, editCommentDom, saveNewComment } from './post-firebase.js';
+import {
+  deleteComment, editCommentDom, saveNewComment, likeMoreUpdate, likeLessUpdate, printLike,
+} from './post-firebase.js';
+import { userActual } from './controller-firebase.js';
 
 // Modal para foto
 export const closeModal = (modal) => {
@@ -49,8 +52,8 @@ export const createComment = (container, doc) => {
             </div>
               <textarea class="text-coment">${doc.data.contenido}</textarea>
             <div class="section-btns-note">
-              <button class='btns-note'><i class="far fa-grin-hearts icons-white"></i></button>
-              <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
+              <button class='like btns-note'>${doc.data.likesTotal}</button>
+              <button class="photo btns-note"><i class="fas fa-share icons-white"></i></button>
                 <select class="comboPrivacy btns-noteEdit">
                 <option value="publica">Pública</option>
                 <option value="privada">Privada</option>
@@ -65,9 +68,45 @@ export const createComment = (container, doc) => {
   const edit = divContainer.querySelector('.edit');
   const save = divContainer.querySelector('.save');
   const privacy = divContainer.querySelector('.comboPrivacy');
+  const btnLike = divContainer.querySelector('.like');
+
   privacy.value = doc.data.privacidad;
   texto.disabled = true;
   privacy.disabled = true;
+
+  const showLike = () => {
+    const myLike = printLike(doc);
+    if (myLike) {
+      btnLike.classList.add('btnLikeOn');
+    } else {
+      btnLike.classList.remove('btnLikeOn');
+    }
+  };
+
+  showLike();
+
+  btnLike.addEventListener('click', () => {
+    const boolean = btnLike.classList.contains('btnLikeOn');
+    console.log(boolean);
+    if (boolean) {
+      likeLessUpdate(doc).then(() => {
+        console.log('Document successfully updated!');
+        btnLike.classList.remove('btnLikeOn');
+      })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      likeMoreUpdate(doc).then(() => {
+        console.log('Document successfully updated!');
+        btnLike.classList.add('btnLikeOn');
+      })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  });
+
   btnDelete.addEventListener('click', () => { deleteComment(doc.id); });
   edit.addEventListener('click', () => {
     save.classList.remove('hide');
@@ -86,4 +125,12 @@ export const createComment = (container, doc) => {
     btnClose: btnDelete,
   };
   return objElements;
+};
+
+export const removeItemArray = (array, item) => {
+  const element = array.indexOf(item);
+
+  if (element !== -1) {
+    array.splice(item, 1);
+  }
 };
