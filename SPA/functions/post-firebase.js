@@ -3,7 +3,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/no-cycle
-import { time, removeItemArray } from './functions-dom.js';
+// import { time, removeItemArray } from './functions-dom.js';
 import { userActual } from './controller-firebase.js';
 
 export const addCommentFirestore = (texto, privacy) => {
@@ -105,7 +105,6 @@ export const likeMoreUpdate = (doc) => {
   if (addlike) {
     arrayUsers.push(userActual().uid);
   }
-  console.log('base de datos actualizada');
   const ref = firebase.firestore().collection('publicaciones').doc(doc.id);
   return ref.update({
     userLikes: arrayUsers,
@@ -114,11 +113,11 @@ export const likeMoreUpdate = (doc) => {
 };
 
 export const likeLessUpdate = (doc) => {
-  debugger
   const arrayUsers = doc.data.userLikes;
   arrayUsers.forEach((user) => {
     if (user === userActual().uid) {
-      removeItemArray(arrayUsers, userActual().uid);
+      // removeItemArray(arrayUsers, userActual().uid);
+      arrayUsers.splice(arrayUsers.indexOf(userActual().uid), 1);
     }
   });
   console.log('base de datos actualizada');
@@ -130,7 +129,6 @@ export const likeLessUpdate = (doc) => {
 };
 
 export const printLike = (doc) => {
-  console.log(doc.data.userLikes);
   let boolean = false;
   if (doc.data.userLikes === undefined) {
     boolean = false;
@@ -141,6 +139,5 @@ export const printLike = (doc) => {
       }
     });
   }
-  console.log(boolean);
   return boolean;
 };
