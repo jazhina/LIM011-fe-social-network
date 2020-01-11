@@ -13,6 +13,10 @@ border: 0;
     border: #ff897c 3px solid;
 }
 
+.btnLikeOff {
+    border: none;
+}
+
 .img-header {
     height: 30%;
     width: 100%;

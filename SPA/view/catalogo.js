@@ -140,7 +140,7 @@ export default (posts) => {
   window.addEventListener('click', () => { closeGrey(modal); });
 
   // Pintando todos los comentarios
-  iterateComments(posts, createComment, comentarios, userActual);
+  iterateComments(posts, createComment, comentarios);
 
   return divElement;
 };

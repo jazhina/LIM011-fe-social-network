@@ -78,7 +78,7 @@ export const saveNewComment = (texto, id, privacy) => {
   texto.disabled = true;
 };
 
-export const iterateComments = (data, createComment, container, userActual) => {
+export const iterateComments = (data, createComment, container) => {
   data.forEach((doc) => {
     if (userActual().uid === doc.data.id && doc.data.privacidad === 'publica') {
       createComment(container, doc);
@@ -105,6 +105,7 @@ export const likeMoreUpdate = (doc) => {
   if (addlike) {
     arrayUsers.push(userActual().uid);
   }
+  console.log('base de datos actualizada');
   const ref = firebase.firestore().collection('publicaciones').doc(doc.id);
   return ref.update({
     userLikes: arrayUsers,
@@ -113,12 +114,14 @@ export const likeMoreUpdate = (doc) => {
 };
 
 export const likeLessUpdate = (doc) => {
+  debugger
   const arrayUsers = doc.data.userLikes;
   arrayUsers.forEach((user) => {
     if (user === userActual().uid) {
       removeItemArray(arrayUsers, userActual().uid);
     }
   });
+  console.log('base de datos actualizada');
   const ref = firebase.firestore().collection('publicaciones').doc(doc.id);
   return ref.update({
     userLikes: arrayUsers,
@@ -127,12 +130,17 @@ export const likeLessUpdate = (doc) => {
 };
 
 export const printLike = (doc) => {
+  console.log(doc.data.userLikes);
   let boolean = false;
-  doc.data.userLikes.forEach((user) => {
-    if (userActual().uid === user) {
-      boolean = true;
-    }
-  });
+  if (doc.data.userLikes === undefined) {
+    boolean = false;
+  } else {
+    doc.data.userLikes.forEach((user) => {
+      if (userActual().uid === user) {
+        boolean = true;
+      }
+    });
+  }
   console.log(boolean);
   return boolean;
 };

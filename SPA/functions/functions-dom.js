@@ -5,7 +5,6 @@
 import {
   deleteComment, editCommentDom, saveNewComment, likeMoreUpdate, likeLessUpdate, printLike,
 } from './post-firebase.js';
-import { userActual } from './controller-firebase.js';
 
 // Modal para foto
 export const closeModal = (modal) => {
@@ -52,7 +51,7 @@ export const createComment = (container, doc) => {
             </div>
               <textarea class="text-coment">${doc.data.contenido}</textarea>
             <div class="section-btns-note">
-              <button class='like btns-note'>${doc.data.likesTotal}</button>
+              <button class='like btns-note ${printLike(doc) ? 'btnLikeOn' : 'btnLikeOff'}'>${doc.data.likesTotal}</button>
               <button class="photo btns-note"><i class="fas fa-share icons-white"></i></button>
                 <select class="comboPrivacy btns-noteEdit">
                 <option value="publica">Pública</option>
@@ -74,23 +73,11 @@ export const createComment = (container, doc) => {
   texto.disabled = true;
   privacy.disabled = true;
 
-  const showLike = () => {
-    const myLike = printLike(doc);
-    if (myLike) {
-      btnLike.classList.add('btnLikeOn');
-    } else {
-      btnLike.classList.remove('btnLikeOn');
-    }
-  };
-
-  showLike();
-
   btnLike.addEventListener('click', () => {
     const boolean = btnLike.classList.contains('btnLikeOn');
-    console.log(boolean);
     if (boolean) {
       likeLessUpdate(doc).then(() => {
-        console.log('Document successfully updated!');
+        console.log('Document successfully updated! ya quite la clase');
         btnLike.classList.remove('btnLikeOn');
       })
         .catch((error) => {
