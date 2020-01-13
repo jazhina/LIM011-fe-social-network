@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-cycle */
 import { firebaseSignIn } from '../functions/auth-firebase.js';
 
 export default () => {

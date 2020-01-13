@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable import/extensions */
 /* eslint-disable import/no-cycle */
 import Home from './home.js';
 import Catalogo from './catalogo.js';

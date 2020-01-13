@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
 import { changeView } from './view-controler/index.js';
 import { initFire } from './functions/auth-firebase.js';
 
@@ -9,7 +11,7 @@ const init = () => {
     projectId: 'pet-lovers-5dca4',
   });
 
-  changeView(window.location.hash);
+
   window.addEventListener('hashchange', () => changeView(window.location.hash));
   initFire();
 };

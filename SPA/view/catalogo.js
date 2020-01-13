@@ -1,9 +1,14 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-cycle */
 import { menuAnimation } from '../functions/animation.js';
-import { userActual, promOutUser } from '../functions/controller-firebase.js';
-import { closeModal, closeGrey, showModal } from '../functions/functions-dom.js';
+import { userActual, promOutUser, promAddCommentFirestore } from '../functions/controller-firebase.js';
+import {
+  closeModal, closeGrey, showModal, createComment,
+} from '../functions/functions-dom.js';
+import { iterateComments } from '../functions/post-firebase.js';
 
-export default () => {
-  const db = firebase.firestore();
+export default (posts) => {
+  console.log(posts);
   const viewCatalogo = `
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
@@ -57,6 +62,11 @@ export default () => {
         <textarea id = "texto" placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
         <div class="btn-coment">
             <button class="btn-img"><i class="far fa-image icons-white"></i></button>
+            <select class="comboPrivacy btns-noteEdit">
+              <option value="publica">Privacidad</option>
+              <option value="publica">Pública</option>
+              <option value="privada">Privada</option>
+            </select>
             <button class="btn-share" id = "compartir">Compartir</button>
         </div>
       </form>
@@ -70,11 +80,18 @@ export default () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
+<<<<<<< HEAD
   
   // PUBLICAR
+=======
+  // AGREGAR COMENTARIO A FIRESTORE y mostrandolo en la pagina
+  const comentarios = divElement.querySelector('#comentarios');
+>>>>>>> 20d2985678b595277e3b7ed5b47ee4c59e3895fd
   const publicar = divElement.querySelector('#compartir');
+  const privacy = divElement.querySelector('.comboPrivacy');
   publicar.addEventListener('click', (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     const textarea = divElement.querySelector('#texto').value;
     console.log(textarea);
 
@@ -148,6 +165,14 @@ export default () => {
   });
       
   // Funciones
+=======
+    const texto = divElement.querySelector('#texto');
+    promAddCommentFirestore(texto, privacy);
+    texto.value = '';
+  });
+
+  // Funciones para animacion de Menú
+>>>>>>> 20d2985678b595277e3b7ed5b47ee4c59e3895fd
   const menuMovil = divElement.querySelector('#menu-movil');
   menuMovil.addEventListener('click', menuAnimation);
   const menuDestok = divElement.querySelector('#icon-down');
@@ -157,6 +182,17 @@ export default () => {
 
   const outSesion = divElement.querySelector('#out-menu-destok');
   outSesion.addEventListener('click', (e) => {
+    e.preventDefault();
+    promOutUser();
+  });
+
+  const outSesionMenuDestok = divElement.querySelector('#enlaces').lastElementChild;
+  const outSesionMenuMovil = divElement.querySelector('#enlaces-destok').lastElementChild;
+  outSesionMenuDestok.addEventListener('click', (e) => {
+    e.preventDefault();
+    promOutUser();
+  });
+  outSesionMenuMovil.addEventListener('click', (e) => {
     e.preventDefault();
     promOutUser();
   });
@@ -183,6 +219,9 @@ export default () => {
   photoProfileDestok.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
   close.addEventListener('click', () => { closeModal(modal); });
   window.addEventListener('click', () => { closeGrey(modal); });
+
+  // Pintando todos los comentarios
+  iterateComments(posts, createComment, comentarios);
 
   return divElement;
 };

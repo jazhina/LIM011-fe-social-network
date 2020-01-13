@@ -9,6 +9,14 @@ border: 0;
     width: 10px;
 }
 
+.btnLikeOn {
+    border: #ff897c 3px solid;
+}
+
+.btnLikeOff {
+    border: none;
+}
+
 .img-header {
     height: 30%;
     width: 100%;
@@ -193,15 +201,29 @@ hr {
 }
 
 .text-coment {
+    border: 0;
+    background-color: none;
     text-align: left;
     font-size: 14px;
     font-family: monospace;
     padding: 15px;
 }
 
+textarea:disabled {
+    color: rgb(51, 51, 51);
+    cursor: default;
+    background-color: rgb(255, 255, 255);
+}
+
+select:disabled {
+    color: rgb(37, 36, 36);
+    -webkit-appearance: none;
+}
+
 .section-btns-note {
     padding: 15px;
     background: rgb(221, 220, 220);
+    display: flex;
 }
 
 .btns-note {
@@ -211,7 +233,17 @@ hr {
     margin-right: 13px;
     margin-top: 5px;
     background: grey;
+}
+
+.btns-noteEdit {
+    height: 37px;
+    margin-right: 13px;
+    background: grey;
     border: none;
+    border-radius: 5%;
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-top: 5px;
 }
 
 .icons-white {
