@@ -9,6 +9,14 @@ border: 0;
     width: 10px;
 }
 
+.btnLikeOn {
+    border: #ff897c 3px solid;
+}
+
+.btnLikeOff {
+    border: none;
+}
+
 .img-header {
     height: 30%;
     width: 100%;
@@ -207,6 +215,11 @@ textarea:disabled {
     background-color: rgb(255, 255, 255);
 }
 
+select:disabled {
+    color: rgb(37, 36, 36);
+    -webkit-appearance: none;
+}
+
 .section-btns-note {
     padding: 15px;
     background: rgb(221, 220, 220);
@@ -220,7 +233,6 @@ textarea:disabled {
     margin-right: 13px;
     margin-top: 5px;
     background: grey;
-    border: none;
 }
 
 .btns-noteEdit {
