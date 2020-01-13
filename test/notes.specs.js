@@ -8,37 +8,31 @@ const fixtureData = {
     posts: {
       __doc__: {
         post001: {
-          post: 'probando mocks',
-          idUser: 'user001',
-          name: 'omaira palacios',
-          email: 'omairapalacios95@gmail.com',
-          date: '12/01/2020',
-          numlikes: 0,
-          type: '1',
+          contenido: 'probando',
+          fecha: '13/01/2020',
+          fechaYhora: '',
+          id: 'user01',
+          nombre: 'Jazmin Rojas',
+          likes: 0,
+          date: '12/01/2020',        
+          privacidad: 'publica',
         },
-        post002: {
-          post: 'probando mocks 3',
-          idUser: 'user002',
-          name: 'maricruz josefina',
-          email: 'maricruz@gmail.com',
-          date: '12/01/2020',
-          numlikes: 0,
-          type: '1',
-        },
+      
       },
     },
   },
 };
 
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
-const objectPost = {
-  post: 'probando mocks 2',
-  idUser: 'user002',
-  name: 'Lizbeth Jaico',
-  email: 'lizbethjaico@gmail.com',
-  date: '12/01/2020',
-  numlikes: 0,
-  type: '1',
+const AddPost = {
+  contenido: 'probando',
+  fecha: '13/01/2020',
+  fechaYhora: '',
+  id: 'user01',
+  nombre: 'Jazmin Rojas',
+  likes: 0,
+  date: '12/01/2020',        
+  privacidad: 'publica',
 };
 
 describe('createComment', () => {
@@ -72,9 +66,9 @@ describe('updatePost', () => {
 });
 
 describe('delete post', () => {
-  it('deberia retornar un post', done => deletePost('post002').then(() => {
+  it('deberia retornar un post', done => deletePost('post01').then(() => {
     const callback = (post) => {
-      const result = post.find(elem => elem.id === 'post002');
+      const result = post.find(elem => elem.id === 'post01');
       expect(result).toBe(undefined);
       done();
     };
@@ -82,13 +76,3 @@ describe('delete post', () => {
   }));
 });
 
-describe('updatePosttype', () => {
-  it('deberia retornar un post', done => updateTypePost('post001', '0').then(() => {
-    const callback = (post) => {
-      const result = post.find(elem => elem.type === '0');
-      expect(result.type).toBe('0');
-      done();
-    };
-    getPosts(callback);
-  }));
-});

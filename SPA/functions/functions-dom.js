@@ -108,14 +108,15 @@ export const createComment = (container, doc) => {
   });
   container.appendChild(divContainer);
 
-  /* const objElements = {
-    btnEdit: edit,
-    btnClose: btnDelete,
+  const objElements = {
+  btnEdit: edit,
+  btnClose: btnDelete,
   };
   return objElements;
+
 };
 
-/* export const removeItemArray = (array, item) => {
+export const removeItemArray = (array, item) => {
   console.log(item);
   const element = array.indexOf(item);
   console.log(element);
@@ -126,6 +127,3 @@ export const createComment = (container, doc) => {
   }
   console.log(array);
 }; 
-
-};*/
-
