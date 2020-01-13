@@ -80,18 +80,16 @@ export default (posts) => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
-<<<<<<< HEAD
-  
-  // PUBLICAR
-=======
+
+
   // AGREGAR COMENTARIO A FIRESTORE y mostrandolo en la pagina
   const comentarios = divElement.querySelector('#comentarios');
->>>>>>> 20d2985678b595277e3b7ed5b47ee4c59e3895fd
+
   const publicar = divElement.querySelector('#compartir');
   const privacy = divElement.querySelector('.comboPrivacy');
   publicar.addEventListener('click', (e) => {
     e.preventDefault();
-<<<<<<< HEAD
+
     const textarea = divElement.querySelector('#texto').value;
     console.log(textarea);
 
@@ -114,7 +112,6 @@ export default (posts) => {
   const year = d.getFullYear();
   const hours = d.getHours();
   const minutes = d.getMinutes();
-  const comentarios = divElement.querySelector('#comentarios');
   db.collection('publicaciones').orderBy('fecha').onSnapshot((querySnapshot) => {
     comentarios.innerHTML = '';
     querySnapshot.forEach((doc) => {
@@ -165,14 +162,15 @@ export default (posts) => {
   });
       
   // Funciones
-=======
+
+
     const texto = divElement.querySelector('#texto');
     promAddCommentFirestore(texto, privacy);
     texto.value = '';
-  });
+  
 
   // Funciones para animacion de Menú
->>>>>>> 20d2985678b595277e3b7ed5b47ee4c59e3895fd
+
   const menuMovil = divElement.querySelector('#menu-movil');
   menuMovil.addEventListener('click', menuAnimation);
   const menuDestok = divElement.querySelector('#icon-down');

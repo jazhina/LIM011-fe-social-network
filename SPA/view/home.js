@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import { promAuthFace, promAuthGoogle} from '../functions/controller-firebase.js';
-=======
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-cycle */
 import { promAuthFace, promAuthGoogle } from '../functions/controller-firebase.js';
->>>>>>> 20d2985678b595277e3b7ed5b47ee4c59e3895fd
 
 export default () => {
   const viewHome = `<header class="header-inicio">
