@@ -1,11 +1,14 @@
+/* eslint-disable no-undef */
+/* eslint-disable import/extensions */
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controler/index.js';
 
 export const initFire = () => {
   firebase.auth().onAuthStateChanged((user) => {
+    console.log('gsddgs', user);
     if (user) {
       console.log('conectado');
-      changeView('#catalogo');
+      changeView('#/catalogo');
     } else {
       console.log('El usuario NO stá conectado');
       changeView('');
@@ -19,7 +22,7 @@ export const firebaseSignIn = (email, password) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    alert(errorMessage);
+    alert(errorMessage, errorCode);
     // ...
   });
 };

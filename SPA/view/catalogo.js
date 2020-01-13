@@ -1,9 +1,14 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-cycle */
 import { menuAnimation } from '../functions/animation.js';
-import { userActual, promOutUser } from '../functions/controller-firebase.js';
-import { closeModal, closeGrey, showModal } from '../functions/functions-dom.js';
+import { userActual, promOutUser, promAddCommentFirestore } from '../functions/controller-firebase.js';
+import {
+  closeModal, closeGrey, showModal, createComment,
+} from '../functions/functions-dom.js';
+import { iterateComments } from '../functions/post-firebase.js';
 
-export default () => {
-  const db = firebase.firestore();
+export default (posts) => {
+  console.log(posts);
   const viewCatalogo = `
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
@@ -57,6 +62,11 @@ export default () => {
         <textarea id = "texto" placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
         <div class="btn-coment">
             <button class="btn-img"><i class="far fa-image icons-white"></i></button>
+            <select class="comboPrivacy btns-noteEdit">
+              <option value="publica">Privacidad</option>
+              <option value="publica">Pública</option>
+              <option value="privada">Privada</option>
+            </select>
             <button class="btn-share" id = "compartir">Compartir</button>
         </div>
       </form>
@@ -70,84 +80,18 @@ export default () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
-  
-  // PUBLICAR
+  // AGREGAR COMENTARIO A FIRESTORE y mostrandolo en la pagina
+  const comentarios = divElement.querySelector('#comentarios');
   const publicar = divElement.querySelector('#compartir');
+  const privacy = divElement.querySelector('.comboPrivacy');
   publicar.addEventListener('click', (e) => {
     e.preventDefault();
-    const textarea = divElement.querySelector('#texto').value;
-    console.log(textarea);
+    const texto = divElement.querySelector('#texto');
+    promAddCommentFirestore(texto, privacy);
+    texto.value = '';
+  });
 
-    db.collection('publicaciones').add({
-      contenido: textarea,
-      fecha: new Date(),
-    })
-      .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
-        divElement.querySelector('#texto').value = '';
-      })
-      .catch((error) => {
-        console.error('Error: ', error);
-      });
-  });
-  // LISTAR PUBLICACIONES
-  const d = new Date();
-  const day = d.getDate();
-  const month = d.getMonth();
-  const year = d.getFullYear();
-  const hours = d.getHours();
-  const minutes = d.getMinutes();
-  const comentarios = divElement.querySelector('#comentarios');
-  db.collection('publicaciones').orderBy('fecha').onSnapshot((querySnapshot) => {
-    comentarios.innerHTML = '';
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data().contenido}`);
-      comentarios.innerHTML += `
-          <div class = "coment">
-            <div class="title-note">
-            <p>Publicado por ${userActual().name}  -  ${day}/${month + 1}/${year} a las ${hours}:${minutes}</p><i class="eliminar fas fa-times"></i><a class="editar">editar</a>
-            </div>
-              <p class="text-coment">${doc.data().contenido}</p>
-            <div class="section-btns-note">
-              <button class='btns-note'><i class="far fa-grin-hearts icons-white"></i></button>
-              <button class="btns-note"><i class="fas fa-share icons-white"></i></button>
-            </div>
-          </div>
-         `;
-      // ELIMINAR PUBLICACIONES
-      comentarios.querySelector('.eliminar').addEventListener('click', () => {
-        db.collection('publicaciones').doc(doc.id).delete().then(() => {
-          console.log('Eliminado');
-        })
-          .catch((error) => {
-            console.error('Error no se pudo remover: ', error);
-          });
-      });
-      
-      // EDITAR PUBLICACIONES
-          comentarios.querySelector('.editar').addEventListener('click', () => {
-            const guardar = divElement.querySelector('.btn-share');
-            guardar.innerHTML = 'Editar';
-            divElement.querySelector('#texto').value = `${doc.data().contenido}`;
-            guardar.addEventListener('click', () => {
-              return db.collection("publicaciones").doc(doc.id).update({               
-                contenido: "Hola Ohayo como estas buen dia",
-              })
-              .then(function() {
-                  console.log("Publicacion editada");
-                  console.log(`${doc.id}=> ${doc.data().contenido}`);
-                  guardar.innerHTML = 'Compartir';
-                // comentarios.querySelector('.text-coment').value = '';
-              })
-              .catch(function(error) {
-                  console.error("No se pudo editar ", error);
-              });
-            });
-        });
-      });
-  });
-      
-  // Funciones
+  // Funciones para animacion de Menú
   const menuMovil = divElement.querySelector('#menu-movil');
   menuMovil.addEventListener('click', menuAnimation);
   const menuDestok = divElement.querySelector('#icon-down');
@@ -157,6 +101,17 @@ export default () => {
 
   const outSesion = divElement.querySelector('#out-menu-destok');
   outSesion.addEventListener('click', (e) => {
+    e.preventDefault();
+    promOutUser();
+  });
+
+  const outSesionMenuDestok = divElement.querySelector('#enlaces').lastElementChild;
+  const outSesionMenuMovil = divElement.querySelector('#enlaces-destok').lastElementChild;
+  outSesionMenuDestok.addEventListener('click', (e) => {
+    e.preventDefault();
+    promOutUser();
+  });
+  outSesionMenuMovil.addEventListener('click', (e) => {
     e.preventDefault();
     promOutUser();
   });
@@ -183,6 +138,9 @@ export default () => {
   photoProfileDestok.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
   close.addEventListener('click', () => { closeModal(modal); });
   window.addEventListener('click', () => { closeGrey(modal); });
+
+  // Pintando todos los comentarios
+  iterateComments(posts, createComment, comentarios);
 
   return divElement;
 };
