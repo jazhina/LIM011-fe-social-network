@@ -3,7 +3,7 @@ import {
 createComment,
 } from '../SPA/functions/functions-dom.js';
 
-const fixtureData = {
+const data = {
   __collection__: {
     posts: {
       __doc__: {
@@ -23,7 +23,7 @@ const fixtureData = {
   },
 };
 
-global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
+global.firebase = new MockFirebase(data, { isNaiveSnapshotListenerEnabled: true });
 const AddPost = {
   contenido: 'probando',
   fecha: '13/01/2020',
