@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-cycle */
 import { promAuthFace, promAuthGoogle } from '../functions/controller-firebase.js';
@@ -53,6 +55,5 @@ export default () => {
       const credential = error.credential;
     });
   });
-
   return divElement;
 };

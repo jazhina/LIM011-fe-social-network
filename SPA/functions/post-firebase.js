@@ -3,7 +3,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/no-cycle
- import { time, removeItemArray } from './functions-dom.js';
+import { time, removeItemArray } from './functions-dom.js';
 import { userActual } from './controller-firebase.js';
 
 export const addCommentFirestore = (texto, privacy) => {
@@ -92,7 +92,6 @@ export const iterateComments = (data, createComment, container) => {
       createComment(container, doc);
     }
   });
-
 };
 
 export const likeMoreUpdate = (doc) => {
@@ -117,7 +116,7 @@ export const likeLessUpdate = (doc) => {
   const arrayUsers = doc.data.userLikes;
   arrayUsers.forEach((user) => {
     if (user === userActual().uid) {
-       removeItemArray(arrayUsers, userActual().uid);
+      removeItemArray(arrayUsers, userActual().uid);
       arrayUsers.splice(arrayUsers.indexOf(userActual().uid), 1);
     }
   });
@@ -142,4 +141,3 @@ export const printLike = (doc) => {
   }
   return boolean;
 };
-

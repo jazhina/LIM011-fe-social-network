@@ -2,7 +2,7 @@
   "name": "social-network",
   "version": "1.0.0",
   "description": "Social Network @ Laboratoria",
-  "main": "src/index.html",
+  "main": "SPA/index.html",
   "keywords": [
     "javascript",
     "firebase",
@@ -15,7 +15,7 @@
     "stylelint": "stylelint --aei SPA/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "jest --coverage",
-    "start": "serve src/"
+    "start": "serve SPA/"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -23,14 +23,14 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.8.0",
-    "eslint": "^6.8.0",
+    "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jest": "^22.1.2",
     "firebase-mock": "^2.3.2",
+    "html": "^1.0.0",
     "htmlhint": "^0.11.0",
     "jest": "^24.9.0",
-    "jest-runner-eslint": "^0.7.5",
     "mock-cloud-firestore": "^0.11.0",
     "regenerator-runtime": "^0.13.1",
     "serve": "^11.0.2",
