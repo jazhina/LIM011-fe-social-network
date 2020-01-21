@@ -3,6 +3,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/no-cycle
+// import MockFirebase from 'mock-cloud-firestore';
 import { time, removeItemArray } from './functions-dom.js';
 import { userActual } from './controller-firebase.js';
 
@@ -42,10 +43,10 @@ export const showAllComments = (fnGetData) => {
 };
 
 export const deleteComment = (id) => {
-  console.log(id);
+  // console.log(id);
   firebase.firestore().collection('publicaciones').doc(id).delete()
     .then(() => {
-      console.log('Eliminado');
+      // console.log('Eliminado');
     })
     .catch((error) => {
       console.error('Error no se pudo remover: ', error);

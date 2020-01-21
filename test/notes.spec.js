@@ -5,7 +5,7 @@
 /* eslint-disable linebreak-style */
 
 import MockFirebase from 'mock-cloud-firestore';
-import { createComment } from '../SPA/functions/functions-dom.js';
+import { deleteComment, showAllComments } from '../SPA/functions/post-firebase.js';
 
 const fixtureData = {
   __collection__: {
@@ -22,7 +22,7 @@ const fixtureData = {
           privacidad: 'publica',
         },
         post002: {
-          contenido: 'probando',
+          contenido: 'probando2',
           fecha: '13/01/2020',
           fechaYhora: '',
           id: 'user02',
@@ -38,15 +38,15 @@ const fixtureData = {
 
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
-describe('lista de publicaciones', () => {
-  it('Debería porder agregar una publicacion', (done) => {
-    return createComment('probando')
-      .then(() => getNotes(
+describe('lista de notas', () => {
+  it('Debería poder eliminar una nota', (done) => {
+    return deleteComment('user01')
+      .then(() => showAllComments(
         (data) => {
           const result = data.find((note) => note.contenido === 'probando');
-          expect(result.contenido).toBe('probando');
+          expect(result).toBe(undefined);
           done()
-        }
+        },
       ))
-  });
-/* import {deleteComment, editCommentDom, saveNewComment} from './post-firebase.js'; */
+  })
+});
